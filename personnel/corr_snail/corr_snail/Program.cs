@@ -23,7 +23,7 @@ namespace corr_snail
                     snail.Move();
                 }
             }
-            Console.SetCursorPosition(toto.x, toto.y);
+            Console.SetCursorPosition(snail.x, snail.y);
             Console.Write(toto.dead);
             Console.SetCursorPosition(titi.x, titi.y);
             Console.Write(titi.dead);
