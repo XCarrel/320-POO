@@ -12,7 +12,7 @@
                 Console.Clear();
                 Console.SetCursorPosition(i, 15);
                 Console.Write("_@_ö");
-                Thread.Sleep(100);
+                Thread.Sleep(10);
             }
             Console.Clear();
             Console.SetCursorPosition(vie, 15);
