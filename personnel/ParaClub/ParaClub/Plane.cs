@@ -4,16 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ex_parachutes
+namespace ParaClub
 {
-    internal class config
+    internal class Plane
     {
-        static class Config
-        {
-            public const int SCREEN_HEIGHT = 40;
-            public const int SCREEN_WIDTH = 150;
-        }
+        public const int WIDTH = 28;
+        public const int HEIGHT = 6;
 
+        public int x;
+        public int altitude;
         private string[] view =
         {
             @" _                         ",
@@ -23,5 +22,20 @@ namespace ex_parachutes
             @"  \_______ --------- __>-} ",
             @"        \_____|_____/   |  "
         };
+
+        public Plane()
+        {
+            x = 0;
+            altitude = Config.SCREEN_HEIGHT;
+        }
+        public void draw()
+        {
+
+        }
+
+        public void update()
+        {
+
+        }
     }
 }

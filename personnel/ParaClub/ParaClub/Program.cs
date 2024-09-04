@@ -1,22 +1,18 @@
-﻿using System.Numerics;
-
-namespace ex_parachutes
+﻿namespace ParaClub
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            while (true)
+            Plane plane = new Plane();
+            Console.CursorVisible = false;
+            while (plane.vie > 0)
             {
-                // Modifier le modèle (ce qui *est*)
                 plane.update();
-                ...
 
-                // Modifier ce que l'on *voit*
                 Console.Clear();
                 plane.draw();
 
-                // Temporiser
                 Thread.Sleep(100);
             }
         }
