@@ -8,5 +8,14 @@ namespace ParaClub
 {
     internal class Para
     {
+        private string[] withoutParachute =
+        {
+             @"     ",
+             @"     ",
+             @"     ",
+             @"  o  ",
+             @" /░\ ",
+             @" / \ ",
+        };
     }
 }

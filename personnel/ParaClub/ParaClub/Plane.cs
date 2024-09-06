@@ -31,11 +31,11 @@ namespace ParaClub
         }
         public void draw()
         {
-                for (int j = 0; j < view.Length; j++)
-                {
-                    Console.SetCursorPosition(x, altitude + j);
-                    Console.WriteLine(view[j]);
-                }
+            for (int j = 0; j < view.Length; j++)
+            {
+                Console.SetCursorPosition(x, altitude + j);
+                Console.WriteLine(view[j]);
+            }
         }
 
         public void update()
