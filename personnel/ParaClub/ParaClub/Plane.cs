@@ -12,8 +12,8 @@ namespace ParaClub
         public const int HEIGHT = 6;
 
         public int x;
-        public int y;
         public int altitude;
+        public List<Para> parachutists;
         private string[] view =
         {
             @" _                         ",
@@ -26,21 +26,42 @@ namespace ParaClub
 
         public Plane()
         {
-            x = 1;
-            altitude = 0;
+            x = 0;
+            altitude = Config.SCREEN_HEIGHT;
+            parachutists = new List<Para>();
         }
         public void draw()
         {
-            for (int j = 0; j < view.Length; j++)
+            for (int i = 0; i < view.Length; i++)
             {
-                Console.SetCursorPosition(x, altitude + j);
-                Console.WriteLine(view[j]);
+                Console.SetCursorPosition(x, i);
+                Console.WriteLine(view[i]);
             }
         }
 
         public void update()
         {
-            x++;
+            if (x >= Config.SCREEN_WIDTH)
+            {
+                x = 0;
+            }
+            else
+            {
+                x++;
+            }
+        }
+        public void board(Para para)
+        {
+            this.parachutists.Add(para);
+        }
+
+        internal Para dropParachutist()
+        {
+            Para parachutist = parachutists.First();
+            parachutists.Remove(parachutist);
+            parachutist.x = x;
+            parachutist.altitude = this.altitude;
+            return parachutist;
         }
     }
 }
