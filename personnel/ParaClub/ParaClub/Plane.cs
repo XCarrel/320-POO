@@ -12,6 +12,7 @@ namespace ParaClub
         public const int HEIGHT = 6;
 
         public int x;
+        public int y;
         public int altitude;
         private string[] view =
         {
@@ -25,17 +26,21 @@ namespace ParaClub
 
         public Plane()
         {
-            x = 0;
-            altitude = Config.SCREEN_HEIGHT;
+            x = 1;
+            altitude = 0;
         }
         public void draw()
         {
-
+                for (int j = 0; j < view.Length; j++)
+                {
+                    Console.SetCursorPosition(x, altitude + j);
+                    Console.WriteLine(view[j]);
+                }
         }
 
         public void update()
         {
-
+            x++;
         }
     }
 }

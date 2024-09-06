@@ -6,11 +6,12 @@
         {
             Plane plane = new Plane();
             Console.CursorVisible = false;
-            while (plane.vie > 0)
+            while (true)
             {
+                Console.Clear();
+
                 plane.update();
 
-                Console.Clear();
                 plane.draw();
 
                 Thread.Sleep(100);
