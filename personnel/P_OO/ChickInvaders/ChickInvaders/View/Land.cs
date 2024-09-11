@@ -1,22 +1,22 @@
-namespace Drones
+namespace ChickInvaders
 {
     // La classe AirSpace représente le territoire au dessus duquel les drones peuvent voler
     // Il s'agit d'un formulaire (une fenêtre) qui montre une vue 2D depuis en dessus
     // Il n'y a donc pas de notion d'altitude qui intervient
 
-    public partial class AirSpace : Form
+    public partial class Land : Form
     {
         public static readonly int WIDTH = 1200;        // Dimensions of the airspace
         public static readonly int HEIGHT = 600;
 
         // La flotte est l'ensemble des drones qui évoluent dans notre espace aérien
-        private List<Drone> fleet;
+        private List<Chick> fleet;
 
         BufferedGraphicsContext currentContext;
         BufferedGraphics airspace;
 
         // Initialisation de l'espace aérien avec un certain nombre de drones
-        public AirSpace(List<Drone> fleet)
+        public Land(List<Chick> fleet)
         {
             InitializeComponent();
             // Gets a reference to the current BufferedGraphicsContext
@@ -35,7 +35,7 @@ namespace Drones
             airspace.Graphics.Clear(Color.AliceBlue);
 
             // draw drones
-            foreach (Drone drone in fleet)
+            foreach (Chick drone in fleet)
             {
                 drone.Render(airspace);
             }
@@ -45,7 +45,7 @@ namespace Drones
 
         public void MoveSideways(object sender, System.Windows.Forms.KeyEventArgs e)
         {
-            foreach (Drone drone in fleet)
+            foreach (Chick drone in fleet)
             {
                 drone.MoveSideways(sender, e);
             }
@@ -54,7 +54,7 @@ namespace Drones
         // Calcul du nouvel état après que 'interval' millisecondes se sont écoulées
         private void Update(int interval)
         {
-            foreach (Drone drone in fleet)
+            foreach (Chick drone in fleet)
             {
                 drone.Update(interval);
             }

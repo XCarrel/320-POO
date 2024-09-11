@@ -1,6 +1,6 @@
-﻿namespace Drones
+﻿namespace ChickInvaders
 {
-    partial class AirSpace
+    partial class Land
     {
         /// <summary>
         ///  Required designer variable.

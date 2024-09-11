@@ -1,7 +1,7 @@
-﻿namespace Drones
+﻿namespace ChickInvaders
 {
     // Cette partie de la classe Drone définit ce qu'est un drone par un modèle numérique
-    public partial class Drone
+    public partial class Chick
     {
         public static readonly int FULLCHARGE = 1000;   // Charge maximale de la batterie
         private int _charge;                            // La charge actuelle de la batterie
@@ -10,7 +10,7 @@
         private int _y;                                 // Position en Y depuis le haut de l'espace aérien
 
         // Constructeur
-        public Drone(int x, int y, string name)
+        public Chick(int x, int y, string name)
         {
             _x = x;
             _y = y;

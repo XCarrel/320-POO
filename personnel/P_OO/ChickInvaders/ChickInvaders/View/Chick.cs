@@ -1,10 +1,10 @@
-﻿using Drones.Helpers;
+﻿using ChickInvaders.Helpers;
 
-namespace Drones
+namespace ChickInvaders
 {
     // Cette partie de la classe Drone définit comment on peut voir un drone
 
-    public partial class Drone
+    public partial class Chick
     {
         private Pen droneBrush = new Pen(new SolidBrush(Color.Purple), 3);
 

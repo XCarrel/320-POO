@@ -1,4 +1,4 @@
-namespace Drones
+namespace ChickInvaders
 {
     internal static class Program
     {
@@ -13,11 +13,11 @@ namespace Drones
             ApplicationConfiguration.Initialize();
 
             // Création de la flotte de drones
-            List<Drone> fleet= new List<Drone>();
-            fleet.Add(new Drone(AirSpace.WIDTH / 2, AirSpace.HEIGHT / 2, "Joe"));
+            List<Chick> fleet= new List<Chick>();
+            fleet.Add(new Chick(Land.WIDTH / 2, Land.HEIGHT / 2, "Joe"));
 
             // Démarrage
-            Application.Run(new AirSpace(fleet));
+            Application.Run(new Land(fleet));
         }
     }
 }
