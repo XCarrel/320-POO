@@ -1,0 +1,83 @@
+﻿namespace Drones
+{
+    // Cette partie de la classe Drone définit ce qu'est un drone par un modèle numérique
+    public partial class Drone
+    {
+        public static readonly int FULLCHARGE = 1000;   // Charge maximale de la batterie
+        private int _charge;                            // La charge actuelle de la batterie
+        private string _name;                           // Un nom
+        private int _x;                                 // Position en X depuis la gauche de l'espace aérien
+        private int _y;                                 // Position en Y depuis le haut de l'espace aérien
+
+        // Constructeur
+        public Drone(int x, int y, string name)
+        {
+            _x = x;
+            _y = y;
+            _name = name;
+            _charge = FULLCHARGE;
+            //_charge = GlobalHelpers.alea.Next(FULLCHARGE); // La charge initiale de la batterie est choisie aléatoirement
+        }
+        public int X { get { return _x;} }
+        public int Y { get { return _y;} }
+        public string Name { get { return _name;} }
+
+        public bool rightIsPressed = false;
+        public bool leftIsPressed = false;
+        public bool upIsPressed = false;
+        public bool downIsPressed = false;
+
+        public void MoveSideways(object sender, System.Windows.Forms.KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.W)
+            {
+                upIsPressed = true;
+            }
+            else if (e.KeyCode == Keys.S)
+            {
+                downIsPressed = true;
+            }
+            else if (e.KeyCode == Keys.D)
+            {
+                rightIsPressed = true;
+            }
+            else if (e.KeyCode == Keys.A)
+            {
+                leftIsPressed = true;
+            }
+        }
+
+        // Cette méthode calcule le nouvel état dans lequel le drone se trouve après
+        // que 'interval' millisecondes se sont écoulées
+        public void Update(int interval)
+        {
+            
+            if (upIsPressed)
+            {
+                _y -= 5;
+            }
+            if (downIsPressed)
+            {
+                _y += 5;
+            }
+            if (rightIsPressed)
+            {
+                _x += 5;
+            }
+            if (leftIsPressed)
+            {
+                _x -= 5;
+            }
+            if (upIsPressed || downIsPressed || rightIsPressed || leftIsPressed)
+            {
+                _charge--;
+            }
+
+            rightIsPressed = false;
+            leftIsPressed = false;
+            upIsPressed = false;
+            downIsPressed = false;
+        }
+
+    }
+}
