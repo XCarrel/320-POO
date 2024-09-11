@@ -22,61 +22,28 @@
         public int Y { get { return _y;} }
         public string Name { get { return _name;} }
 
-        public bool rightIsPressed = false;
-        public bool leftIsPressed = false;
-        public bool upIsPressed = false;
-        public bool downIsPressed = false;
-
-        public void MoveSideways(object sender, System.Windows.Forms.KeyEventArgs e)
+        public void MoveUp()
         {
-            if (e.KeyCode == Keys.W)
-            {
-                upIsPressed = true;
-            }
-            else if (e.KeyCode == Keys.S)
-            {
-                downIsPressed = true;
-            }
-            else if (e.KeyCode == Keys.D)
-            {
-                rightIsPressed = true;
-            }
-            else if (e.KeyCode == Keys.A)
-            {
-                leftIsPressed = true;
-            }
+            _y -= 2;
+        }
+        public void MoveDown()
+        {
+            _y += 2;
+        }
+        public void MoveLeft()
+        {
+            _x -= 2;
+        }
+        public void MoveRight()
+        {
+            _x += 2;
         }
 
         // Cette méthode calcule le nouvel état dans lequel le drone se trouve après
         // que 'interval' millisecondes se sont écoulées
         public void Update(int interval)
         {
-            
-            if (upIsPressed)
-            {
-                _y -= 5;
-            }
-            if (downIsPressed)
-            {
-                _y += 5;
-            }
-            if (rightIsPressed)
-            {
-                _x += 5;
-            }
-            if (leftIsPressed)
-            {
-                _x -= 5;
-            }
-            if (upIsPressed || downIsPressed || rightIsPressed || leftIsPressed)
-            {
-                _charge--;
-            }
-
-            rightIsPressed = false;
-            leftIsPressed = false;
-            upIsPressed = false;
-            downIsPressed = false;
+            _charge--;
         }
 
     }

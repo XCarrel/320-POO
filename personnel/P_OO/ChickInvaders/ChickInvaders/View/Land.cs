@@ -1,3 +1,5 @@
+using System.Security.Cryptography.X509Certificates;
+
 namespace ChickInvaders
 {
     // La classe AirSpace représente le territoire au dessus duquel les drones peuvent voler
@@ -21,7 +23,7 @@ namespace ChickInvaders
             InitializeComponent();
             // Gets a reference to the current BufferedGraphicsContext
             this.KeyPreview = true;
-            this.KeyDown += new KeyEventHandler(MoveSideways);
+            this.KeyDown += new KeyEventHandler(Move);
             currentContext = BufferedGraphicsManager.Current;
             // Creates a BufferedGraphics instance associated with this form, and with
             // dimensions the same size as the drawing surface of the form.
@@ -35,19 +37,33 @@ namespace ChickInvaders
             airspace.Graphics.Clear(Color.AliceBlue);
 
             // draw drones
-            foreach (Chick drone in fleet)
+            foreach (Chick chick in fleet)
             {
-                drone.Render(airspace);
+                chick.Render(airspace);
             }
 
             airspace.Render();
         }
 
-        public void MoveSideways(object sender, System.Windows.Forms.KeyEventArgs e)
+        public void Move(object sender, System.Windows.Forms.KeyEventArgs e)
         {
-            foreach (Chick drone in fleet)
+            foreach (Chick chick in fleet)
             {
-                drone.MoveSideways(sender, e);
+                switch (e.KeyCode)
+                {
+                    case Keys.W:
+                        chick.MoveUp();
+                        break;
+                    case Keys.S:
+                        chick.MoveDown();
+                        break;
+                    case Keys.D:
+                        chick.MoveRight();
+                        break;
+                    case Keys.A:
+                        chick.MoveLeft();
+                        break;
+                }
             }
         }
 
