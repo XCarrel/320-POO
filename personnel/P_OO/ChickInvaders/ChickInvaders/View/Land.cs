@@ -1,4 +1,6 @@
+using ChickInvaders.View;
 using System.Security.Cryptography.X509Certificates;
+using System.Windows.Forms.VisualStyles;
 
 namespace ChickInvaders
 {
@@ -13,33 +15,56 @@ namespace ChickInvaders
 
         // La flotte est l'ensemble des drones qui évoluent dans notre espace aérien
         private List<Chick> coop;
+        private List<Foes> ufo;
 
         BufferedGraphicsContext currentContext;
         BufferedGraphics airspace;
+
+        private Image background;
 
         // Initialisation de l'espace aérien avec un certain nombre de drones
         public Land(List<Chick> coop)
         {
             InitializeComponent();
+            this.Size = new Size(WIDTH, HEIGHT);
             // Gets a reference to the current BufferedGraphicsContext
             this.KeyPreview = true;
             this.KeyDown += new KeyEventHandler(Move);
+            this.KeyUp += new KeyEventHandler(StopMove);
             currentContext = BufferedGraphicsManager.Current;
             // Creates a BufferedGraphics instance associated with this form, and with
             // dimensions the same size as the drawing surface of the form.
             airspace = currentContext.Allocate(this.CreateGraphics(), this.DisplayRectangle);
             this.coop = coop;
+
+            SetBackgroundImage("background.png");
+        }
+        public Land(List<Foes> ufo)
+        {
+            InitializeComponent();
+            currentContext = BufferedGraphicsManager.Current;
+            airspace = currentContext.Allocate(this.CreateGraphics(), this.DisplayRectangle);
+            this.ufo = ufo;
+        }
+
+        public void SetBackgroundImage(string filePath)
+        {
+            background = Image.FromFile("background.png");
+            this.BackgroundImage = background;
+            //this.Invalidate();
         }
 
         // Affichage de la situation actuelle
         private void Render()
         {
-            airspace.Graphics.Clear(Color.AliceBlue);
-
             // draw chicks
             foreach (Chick chick in coop)
             {
                 chick.Render(airspace);
+            }
+            foreach (Foes foes in ufo)
+            {
+                foes.Render(airspace);
             }
 
             airspace.Render();
@@ -52,16 +77,38 @@ namespace ChickInvaders
                 switch (e.KeyCode)
                 {
                     case Keys.W:
-                        chick.MoveUp();
+                        chick.GoUp(3);
                         break;
                     case Keys.S:
-                        chick.MoveDown();
+                        chick.GoDown(3);
                         break;
                     case Keys.D:
-                        chick.MoveRight();
+                        chick.GoRight(3);
                         break;
                     case Keys.A:
-                        chick.MoveLeft();
+                        chick.GoLeft(3);
+                        break;
+                }
+            }
+        }
+
+        public void StopMove(object sender, System.Windows.Forms.KeyEventArgs e)
+        {
+            foreach (Chick chick in coop)
+            {
+                switch (e.KeyCode)
+                {
+                    case Keys.W:
+                        chick.GoUp(0);
+                        break;
+                    case Keys.S:
+                        chick.GoDown(0);
+                        break;
+                    case Keys.D:
+                        chick.GoRight(0);
+                        break;
+                    case Keys.A:
+                        chick.GoLeft(0);
                         break;
                 }
             }

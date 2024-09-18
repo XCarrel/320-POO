@@ -1,26 +1,30 @@
 ﻿using ChickInvaders.Helpers;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Xml.Linq;
 
-namespace ChickInvaders
+namespace ChickInvaders.View
 {
-    // Cette partie de la classe Drone définit comment on peut voir un drone
-
-    public partial class Chick
+    public partial class Foes
     {
         // De manière graphique
         public void Render(BufferedGraphics drawingSpace)
         {
-            int imgWidth = chickImage.Width;
-            int imgHeight = chickImage.Height;
-            int chickSize = 50;
-            int chickHeight = 50;
+            int imgWidth = foeImage.Width;
+            int imgHeight = foeImage.Height;
+            int foeSize = 50;
+            int foeHeight = 50;
 
 
 
             // Faire en sorte que ça soit centré
-            int imgX = _x - chickSize / 2;
-            int imgY = _y - chickHeight / 2;
+            int imgX = _x - foeSize / 2;
+            int imgY = _y - foeHeight / 2;
 
-            drawingSpace.Graphics.DrawImage(chickImage, new Rectangle(imgX, imgY, chickSize, chickHeight));
+            drawingSpace.Graphics.DrawImage(foeImage, new Rectangle(imgX, imgY, foeSize, foeHeight));
             drawingSpace.Graphics.DrawString($"{this}", TextHelpers.drawFont, TextHelpers.writingBrush, _x + imgWidth / 2 + 5, _y - imgHeight / 2);
         }
 

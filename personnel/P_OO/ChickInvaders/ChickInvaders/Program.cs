@@ -13,8 +13,9 @@ namespace ChickInvaders
             ApplicationConfiguration.Initialize();
             // Création de la flotte de drones
             List<Chick> coop= new List<Chick>();
+            List<Foes> ufo = new List<Foes>();
             coop.Add(new Chick(Land.WIDTH / 2, Land.HEIGHT / 2, "Joe"));
-
+            ufo.Add(new Foes(Land.WIDTH, Land.HEIGHT) / 2, "Arthur");
             // Démarrage
             Application.Run(new Land(coop));
         }

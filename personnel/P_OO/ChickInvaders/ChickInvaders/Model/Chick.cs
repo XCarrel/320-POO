@@ -9,6 +9,8 @@
         private int _x;                                 // Position en X depuis la gauche de l'espace aérien
         private int _y;                                 // Position en Y depuis le haut de l'espace aérien
         private Image chickImage;
+        private int _speedX = 0;
+        private int _speedY = 0;
 
         // Constructeur
         public Chick(int x, int y, string name)
@@ -18,35 +20,51 @@
             _name = name;
             _charge = FULLCHARGE;
             //_charge = GlobalHelpers.alea.Next(FULLCHARGE); // La charge initiale de la batterie est choisie aléatoirement
-
             chickImage = Image.FromFile("chick.png");
         }
         public int X { get { return _x;} }
         public int Y { get { return _y;} }
         public string Name { get { return _name;} }
 
+        public void GoLeft(int speed)
+        {
+            _speedX = -speed;
+        }
+        public void GoRight(int speed)
+        {
+            _speedX = +speed;
+        }
+        public void GoUp(int speed)
+        {
+            _speedY = -speed;
+        }
+        public void GoDown(int speed)
+        {
+            _speedY = +speed;
+        }
         public void MoveUp()
         {
-            _y -= 2;
+            _y -= _speedY;
         }
         public void MoveDown()
         {
-            _y += 2;
+            _y += _speedY;
         }
         public void MoveLeft()
         {
-            _x -= 2;
+            _x -= _speedX;
         }
         public void MoveRight()
         {
-            _x += 2;
+            _x += _speedX;
         }
 
         // Cette méthode calcule le nouvel état dans lequel le drone se trouve après
         // que 'interval' millisecondes se sont écoulées
         public void Update(int interval)
         {
+            _x += _speedX;
+            _y += _speedY;
         }
-
     }
 }
