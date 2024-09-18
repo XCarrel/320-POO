@@ -12,13 +12,13 @@ namespace ChickInvaders
         public static readonly int HEIGHT = 600;
 
         // La flotte est l'ensemble des drones qui évoluent dans notre espace aérien
-        private List<Chick> fleet;
+        private List<Chick> coop;
 
         BufferedGraphicsContext currentContext;
         BufferedGraphics airspace;
 
         // Initialisation de l'espace aérien avec un certain nombre de drones
-        public Land(List<Chick> fleet)
+        public Land(List<Chick> coop)
         {
             InitializeComponent();
             // Gets a reference to the current BufferedGraphicsContext
@@ -28,7 +28,7 @@ namespace ChickInvaders
             // Creates a BufferedGraphics instance associated with this form, and with
             // dimensions the same size as the drawing surface of the form.
             airspace = currentContext.Allocate(this.CreateGraphics(), this.DisplayRectangle);
-            this.fleet = fleet;
+            this.coop = coop;
         }
 
         // Affichage de la situation actuelle
@@ -36,8 +36,8 @@ namespace ChickInvaders
         {
             airspace.Graphics.Clear(Color.AliceBlue);
 
-            // draw drones
-            foreach (Chick chick in fleet)
+            // draw chicks
+            foreach (Chick chick in coop)
             {
                 chick.Render(airspace);
             }
@@ -47,7 +47,7 @@ namespace ChickInvaders
 
         public void Move(object sender, System.Windows.Forms.KeyEventArgs e)
         {
-            foreach (Chick chick in fleet)
+            foreach (Chick chick in coop)
             {
                 switch (e.KeyCode)
                 {
@@ -70,9 +70,9 @@ namespace ChickInvaders
         // Calcul du nouvel état après que 'interval' millisecondes se sont écoulées
         private void Update(int interval)
         {
-            foreach (Chick drone in fleet)
+            foreach (Chick chick in coop)
             {
-                drone.Update(interval);
+                chick.Update(interval);
             }
         }
 

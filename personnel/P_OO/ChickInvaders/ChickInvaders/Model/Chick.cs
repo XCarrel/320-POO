@@ -8,6 +8,7 @@
         private string _name;                           // Un nom
         private int _x;                                 // Position en X depuis la gauche de l'espace aérien
         private int _y;                                 // Position en Y depuis le haut de l'espace aérien
+        private Image chickImage;
 
         // Constructeur
         public Chick(int x, int y, string name)
@@ -17,6 +18,8 @@
             _name = name;
             _charge = FULLCHARGE;
             //_charge = GlobalHelpers.alea.Next(FULLCHARGE); // La charge initiale de la batterie est choisie aléatoirement
+
+            chickImage = Image.FromFile("chick.png");
         }
         public int X { get { return _x;} }
         public int Y { get { return _y;} }
@@ -43,7 +46,6 @@
         // que 'interval' millisecondes se sont écoulées
         public void Update(int interval)
         {
-            _charge--;
         }
 
     }
