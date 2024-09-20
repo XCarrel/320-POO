@@ -1,4 +1,4 @@
-using ChickInvaders.View;
+using ChickInvaders;
 using System.Security.Cryptography.X509Certificates;
 using System.Windows.Forms.VisualStyles;
 
@@ -23,7 +23,7 @@ namespace ChickInvaders
         private Image background;
 
         // Initialisation de l'espace aérien avec un certain nombre de drones
-        public Land(List<Chick> coop)
+        public Land(List<Chick> coop, List<Foes> ufo) : base()
         {
             InitializeComponent();
             this.Size = new Size(WIDTH, HEIGHT);
@@ -36,21 +36,14 @@ namespace ChickInvaders
             // dimensions the same size as the drawing surface of the form.
             airspace = currentContext.Allocate(this.CreateGraphics(), this.DisplayRectangle);
             this.coop = coop;
-
-            SetBackgroundImage("background.png");
-        }
-        public Land(List<Foes> ufo)
-        {
-            InitializeComponent();
-            currentContext = BufferedGraphicsManager.Current;
-            airspace = currentContext.Allocate(this.CreateGraphics(), this.DisplayRectangle);
             this.ufo = ufo;
+            SetBackgroundImage("background.png");
         }
 
         public void SetBackgroundImage(string filePath)
         {
             background = Image.FromFile("background.png");
-            this.BackgroundImage = background;
+            BackgroundImage = background;
             //this.Invalidate();
         }
 

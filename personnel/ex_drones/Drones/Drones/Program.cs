@@ -17,7 +17,7 @@ namespace Drones
             // Création de la flotte de drones
             List<Drone> fleet= new List<Drone>();
             Drone drone = new Drone();
-            Attributs()
+            drone.Attributs(100, 100, "joe");
             fleet.Add(drone);
 
             List<Building> area = new List<Building>();
