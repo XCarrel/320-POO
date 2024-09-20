@@ -1,4 +1,5 @@
-namespace Test
+using Drones;
+namespace DroneTest
 {
     [TestClass]
     public class UnitTest1
@@ -6,6 +7,7 @@ namespace Test
         [TestMethod]
         public void TestMethod1()
         {
+            Drone drone = new Drone();
         }
     }
 }

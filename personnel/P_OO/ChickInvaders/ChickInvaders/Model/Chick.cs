@@ -11,6 +11,7 @@
         private Image chickImage;
         private int _speedX = 0;
         private int _speedY = 0;
+        public bool isFacingLeft;
 
         // Constructeur
         public Chick(int x, int y, string name)
@@ -29,6 +30,7 @@
         public void GoLeft(int speed)
         {
             _speedX = -speed;
+            isFacingLeft = true;
         }
         public void GoRight(int speed)
         {
