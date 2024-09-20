@@ -59,6 +59,11 @@ namespace Drones
             }
         }
 
+        private void Attributs(int x, int y, string name)
+        {
+
+        }
+
         // Méthode appelée à chaque frame
         private void NewFrame(object sender, EventArgs e)
         {
