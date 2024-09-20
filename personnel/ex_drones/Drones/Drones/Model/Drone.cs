@@ -5,11 +5,17 @@
     {
         Random alea = new Random();
 
-        public int charge = 1000;                     // La charge actuelle de la batterie
-        public string name;                           // Un nom
-        public int x ;                                // Position en X depuis la gauche de l'espace aérien
-        public int y;                                 // Position en Y depuis le haut de l'espace aérien
+        private int charge = 1000;                     // La charge actuelle de la batterie
+        private string name;                           // Un nom
+        private int x ;                                // Position en X depuis la gauche de l'espace aérien
+        private int y;                                 // Position en Y depuis le haut de l'espace aérien
 
+        public void Attributs(int x, int y, string name)
+        {
+            this.x = x;
+            this.y = y;
+            this.name = name;
+        }
 
         // Cette méthode calcule le nouvel état dans lequel le drone se trouve après
         // que 'interval' millisecondes se sont écoulées
@@ -19,6 +25,5 @@
             y += alea.Next(-2, 3);                     // Il s'est déplacé d'une valeur aléatoire vers le haut ou le bas
             charge--;                                  // Il a dépensé de l'énergie
         }
-
     }
 }

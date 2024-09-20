@@ -17,18 +17,15 @@ namespace Drones
             // Création de la flotte de drones
             List<Drone> fleet= new List<Drone>();
             Drone drone = new Drone();
-            drone.x = 100;
-            drone.y = 100;
-            drone.name = "Joe";
+            Attributs()
             fleet.Add(drone);
 
             List<Building> area = new List<Building>();
-            Building building = new Building();
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 10; i++)
             {
-                building.emplacementX = 400;
-                building.emplacementY = random.Next(0, 100);
+                Building building = new Building();
                 area.Add(building);
+                building.UpdateB();
             }
 
             // Démarrage
