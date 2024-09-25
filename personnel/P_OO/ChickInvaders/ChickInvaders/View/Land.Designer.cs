@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Land));
             ticker = new System.Windows.Forms.Timer(components);
             SuspendLayout();
             // 
@@ -42,8 +43,8 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImage = Resource1.background;
-            ClientSize = new Size(284, 261);
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            ClientSize = new Size(1184, 561);
             Name = "Land";
             Text = "AirSpace";
             ResumeLayout(false);

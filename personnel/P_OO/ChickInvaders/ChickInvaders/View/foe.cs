@@ -15,8 +15,8 @@ namespace ChickInvaders
         {
             int imgWidth = foeImage.Width;
             int imgHeight = foeImage.Height;
-            int foeSize = 50;
-            int foeHeight = 50;
+            int foeSize = 200;
+            int foeHeight = 200;
 
 
 

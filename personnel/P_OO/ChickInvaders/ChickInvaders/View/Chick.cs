@@ -14,18 +14,18 @@ namespace ChickInvaders
             int chickSize = 50;
             int chickHeight = 50;
 
-            if (isFacingLeft)
-            using (Image Flippedfish = Image.FromFile("chick.png"))
-            {
-                // Flip the image
-                Flippedfish.RotateFlip(RotateFlipType.RotateNoneFlipX);
-
-
-
-                drawingSpace.Graphics.TranslateTransform(X, Y); // Déplace l'origine du dessin au centre du poisson
-                drawingSpace.Graphics.DrawImage(Flippedfish, -Flippedfish.Width / 2, -Flippedfish.Height / 2);
-                drawingSpace.Graphics.ResetTransform(); // Réinitialise la transformation
-            }
+            //if (isFacingLeft)
+            //using (Image Flippedfish = Image.FromFile("chick.png"))
+            //{
+            //    // Flip the image
+            //    Flippedfish.RotateFlip(RotateFlipType.RotateNoneFlipX);
+            //
+            //
+            //
+            //    drawingSpace.Graphics.TranslateTransform(X, Y); // Déplace l'origine du dessin au centre du poisson
+            //    drawingSpace.Graphics.DrawImage(Flippedfish, -Flippedfish.Width / 2, -Flippedfish.Height / 2);
+            //    drawingSpace.Graphics.ResetTransform(); // Réinitialise la transformation
+            //}
 
             // Faire en sorte que ça soit centré
             int imgX = _x - chickSize / 2;
