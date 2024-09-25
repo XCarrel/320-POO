@@ -15,7 +15,7 @@ namespace ChickInvaders
             List<Chick> coop= new List<Chick>();
             List<Foes> ufo = new List<Foes>();
             coop.Add(new Chick(Land.WIDTH / 2, Land.HEIGHT / 2, "Joe"));
-            ufo.Add(new Foes(Land.WIDTH, Land.HEIGHT / 2, "Arthur"));
+            ufo.Add(new Foes(15, 15, "Arthur"));
             // Démarrage
             Application.Run(new Land(coop, ufo));
         }

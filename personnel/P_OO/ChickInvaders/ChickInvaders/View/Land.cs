@@ -114,6 +114,10 @@ namespace ChickInvaders
             {
                 chick.Update(interval);
             }
+            foreach (Foes foes in ufo)
+            {
+                foes.UpdateF(interval);
+            }
         }
 
         // Méthode appelée à chaque frame

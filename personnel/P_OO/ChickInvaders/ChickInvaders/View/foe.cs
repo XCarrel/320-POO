@@ -15,17 +15,20 @@ namespace ChickInvaders
         {
             int imgWidth = foeImage.Width;
             int imgHeight = foeImage.Height;
-            int foeSize = 200;
-            int foeHeight = 200;
+            int foeSize = 100;
+            int foeHeight = 100;
 
 
 
             // Faire en sorte que ça soit centré
-            int imgX = _x - foeSize / 2;
-            int imgY = _y - foeHeight / 2;
+            //int imgX = _x - foeSize / 2;
+            //int imgY = _y - foeHeight / 2;
+
+            int imgX = fx;
+            int imgY = fy;
 
             drawingSpace.Graphics.DrawImage(foeImage, new Rectangle(imgX, imgY, foeSize, foeHeight));
-            drawingSpace.Graphics.DrawString($"{this}", TextHelpers.drawFont, TextHelpers.writingBrush, _x + imgWidth / 2 + 5, _y - imgHeight / 2);
+            //drawingSpace.Graphics.DrawString($"{this}", TextHelpers.drawFont, TextHelpers.writingBrush, _x + imgWidth / 2 + 5, _y - imgHeight / 2);
         }
 
         // De manière textuelle
