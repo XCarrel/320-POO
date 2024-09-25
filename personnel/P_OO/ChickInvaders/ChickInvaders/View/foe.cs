@@ -13,10 +13,13 @@ namespace ChickInvaders
         // De manière graphique
         public void Render(BufferedGraphics drawingSpace)
         {
-            int imgWidth = foeImage.Width;
-            int imgHeight = foeImage.Height;
+            int imgWidth1 = foeImage1.Width;
+            int imgHeight1 = foeImage1.Height;
             int foeSize = 100;
             int foeHeight = 100;
+
+            int imgWidth2 = foeImage2.Width;
+            int imgHeight2 = foeImage2.Height;
 
 
 
@@ -27,7 +30,8 @@ namespace ChickInvaders
             int imgX = fx;
             int imgY = fy;
 
-            drawingSpace.Graphics.DrawImage(foeImage, new Rectangle(imgX, imgY, foeSize, foeHeight));
+            drawingSpace.Graphics.DrawImage(foeImage1, new Rectangle(imgX, imgY, foeSize, foeHeight));
+            //drawingSpace.Graphics.DrawImage(foeImage2, new Rectangle(imgX, imgY, foeSize, foeHeight));
             //drawingSpace.Graphics.DrawString($"{this}", TextHelpers.drawFont, TextHelpers.writingBrush, _x + imgWidth / 2 + 5, _y - imgHeight / 2);
         }
 

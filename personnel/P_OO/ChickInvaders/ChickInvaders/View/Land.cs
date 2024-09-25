@@ -1,6 +1,7 @@
 using ChickInvaders;
 using System.Security.Cryptography.X509Certificates;
 using System.Windows.Forms.VisualStyles;
+using System.Xml;
 
 namespace ChickInvaders
 {
@@ -50,6 +51,9 @@ namespace ChickInvaders
         // Affichage de la situation actuelle
         private void Render()
         {
+            Graphics g = airspace.Graphics;
+            g.DrawImage(background, 0, 0, WIDTH, HEIGHT);
+
             // draw chicks
             foreach (Chick chick in coop)
             {
@@ -59,7 +63,10 @@ namespace ChickInvaders
             {
                 foes.Render(airspace);
             }
-
+            //if (fx == 30 || 40 || 50)
+            //{
+            //    Projectile.Render(airspace);
+            //}
             airspace.Render();
         }
 

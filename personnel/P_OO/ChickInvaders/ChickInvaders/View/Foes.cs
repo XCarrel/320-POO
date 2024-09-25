@@ -13,7 +13,9 @@ namespace ChickInvaders
         private string _name;                           // Un nom
         private int fx;                                 // Position en X depuis la gauche de l'espace aérien
         private int fy;
-        private Image foeImage;
+        private List<Image> images = new List<Image>();
+        private Image foeImage1;
+        private Image foeImage2;
 
         // Constructeur
         public Foes(int x, int y, string name)
@@ -23,7 +25,8 @@ namespace ChickInvaders
             _name = name;
             _charge = FULLCHARGE;
             //_charge = GlobalHelpers.alea.Next(FULLCHARGE); // La charge initiale de la batterie est choisie aléatoirement
-            foeImage = Image.FromFile("foe1.png");
+            foeImage1 = Image.FromFile("foe1.png");
+            foeImage2 = Image.FromFile("foe2.png");
         }
         public int X { get { return fx; } }
         public string Name { get { return _name; } }
@@ -32,7 +35,14 @@ namespace ChickInvaders
         // que 'interval' millisecondes se sont écoulées
         public void UpdateF(int interval)
         {
-            fx++;
+            if (fx < 1100)
+            {
+                fx++;
+            }
+            else
+            {
+                fx = 0;
+            }
         }
     }
 }
