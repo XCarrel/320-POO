@@ -26,7 +26,7 @@ namespace Drones
                 {
                     for (int i = 0; i < nb; i++)
                     {
-                        Drone drone = new Drone();
+                        Drone drone = new Drone(1, 2);
                         drone.Attributs(100, 100, "joe");
                         fleet.Add(drone);
                     }

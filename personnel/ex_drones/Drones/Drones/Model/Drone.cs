@@ -1,4 +1,6 @@
 ﻿
+using System.ComponentModel;
+
 namespace Drones
 {
     // Cette partie de la classe Drone définit ce qu'est un drone par un modèle numérique
@@ -11,6 +13,12 @@ namespace Drones
         private int x ;                                // Position en X depuis la gauche de l'espace aérien
         private int y;                                 // Position en Y depuis le haut de l'espace aérien
 
+        public Drone(int x, int y)
+        {
+            this.x = x;
+            this.y = y;
+            this.name = name;
+        }
         public void Attributs(int x, int y, string name)
         {
             this.x = x;
