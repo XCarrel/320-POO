@@ -42,7 +42,7 @@ namespace ChickInvaders
             }
             else
             {
-                fx = 1200;
+                fx = 1100;
                 speedF2 = GlobalHelpers.alea.Next(1, 8);
                 fy = GlobalHelpers.alea.Next(1, 150);
             }

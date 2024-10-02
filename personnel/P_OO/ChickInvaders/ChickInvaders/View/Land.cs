@@ -145,17 +145,16 @@ namespace ChickInvaders
             foreach (Foes foes in ufo)
             {
                 int randomX = GlobalHelpers.alea.Next(1, 50);
-                int randomXX = GlobalHelpers.alea.Next(1, 50);
                 foes.UpdateF(interval);
-                if (randomX == randomXX)
+                if (randomX == 1)
                 {
                     projectiles.Add(new Projectile(foes.X, foes.Y));
                 }
             }
             foreach (Foes2 foes2 in ufo2)
             {
-                int randomX = GlobalHelpers.alea.Next(1, 50);
-                int randomXX = GlobalHelpers.alea.Next(1, 50);
+                int randomX = GlobalHelpers.alea.Next(1, 300);
+                int randomXX = GlobalHelpers.alea.Next(1, 300);
                 foes2.UpdateF2(interval);
                 if (randomX == randomXX)
                 {
@@ -165,7 +164,7 @@ namespace ChickInvaders
             foreach (Projectile projectile in projectiles)
             {
                 projectile.UpdateP(interval);
-                if (projectile.Y > 500)
+                if (projectile.Y > 550)
                 {
                     projectiles.Remove(projectile);
                     break;

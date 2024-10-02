@@ -23,9 +23,9 @@
             //_charge = GlobalHelpers.alea.Next(FULLCHARGE); // La charge initiale de la batterie est choisie aléatoirement
             chickImage = Image.FromFile("chick.png");
         }
-        public int X { get { return _x;} }
-        public int Y { get { return _y;} }
-        public string Name { get { return _name;} }
+        public int X { get { return _x; } }
+        public int Y { get { return _y; } }
+        public string Name { get { return _name; } }
 
         public void GoLeft(int speed)
         {
@@ -70,8 +70,31 @@
         // que 'interval' millisecondes se sont écoulées
         public void Update(int interval)
         {
-            _x += _speedX;
-            _y += _speedY;
+            if (_x > 20 && _x < 1180)
+            {
+                _x += _speedX;
+            }
+            else if (_x <= 20)
+            {
+                _x = 22;
+            }
+            else if (_x >= 1180)
+            {
+                _x = 1178;
+            }
+
+            if (_y > 200 && _y < 535)
+            {
+                _y += _speedY;
+            }
+            else if (_y <= 200)
+            {
+                _y = 202;
+            }
+            else if (_y >= 535)
+            {
+                _y = 533;
+            }
         }
     }
 }
