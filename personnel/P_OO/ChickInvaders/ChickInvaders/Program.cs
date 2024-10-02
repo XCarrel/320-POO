@@ -18,6 +18,8 @@ namespace ChickInvaders
             List<Projectile> projectiles = new List<Projectile>();
             List<Eggs> eggs = new List<Eggs>();
             coop.Add(new Chick(Land.WIDTH / 2, Land.HEIGHT / 2, "Joe"));
+
+            ufo.Add(new Foes(1200, 0, "Sajad"));
             ufo.Add(new Foes(1200, 0, "Arthur"));
             ufo.Add(new Foes(1200, 0, "Ricardo"));
             ufo.Add(new Foes(1200, 0, "Gabriel"));
@@ -28,9 +30,6 @@ namespace ChickInvaders
             ufo2.Add(new Foes2(0, 0, "André"));
             ufo2.Add(new Foes2(0, 0, "Lucio"));
             ufo2.Add(new Foes2(0, 0, "Joe"));
-
-
-            ufo.Add(new Foes(15, 15, "Arthur"));
             //ufo.Add(new Foes(0, 70, "Arthauer"));
             // Démarrage
             Application.Run(new Land(coop, ufo, ufo2, projectiles, eggs));

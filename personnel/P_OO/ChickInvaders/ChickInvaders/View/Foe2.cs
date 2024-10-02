@@ -13,6 +13,8 @@ namespace ChickInvaders
         {
             int imgWidth2 = foeImage2.Width;
             int imgHeight2 = foeImage2.Height;
+
+            // Taille de l'image
             int foeSize = 100;
             int foeHeight = 100;
 

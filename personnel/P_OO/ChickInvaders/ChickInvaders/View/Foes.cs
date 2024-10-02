@@ -26,7 +26,6 @@ namespace ChickInvaders
             _name = name;
             speedF = GlobalHelpers.alea.Next(1, 8);
             _charge = FULLCHARGE;
-            //_charge = GlobalHelpers.alea.Next(FULLCHARGE); // La charge initiale de la batterie est choisie aléatoirement
             foeImage1 = Image.FromFile("foe1.png");
         }
         public int X { get { return fx; } }

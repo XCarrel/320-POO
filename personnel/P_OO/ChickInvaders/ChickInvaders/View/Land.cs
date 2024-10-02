@@ -5,13 +5,13 @@ using System.Xml;
 
 namespace ChickInvaders
 {
-    // La classe AirSpace représente le territoire au dessus duquel les drones peuvent voler
+    // La classe Land représente le territoire au dessus duquel les entités peuvent voler
     // Il s'agit d'un formulaire (une fenêtre) qui montre une vue 2D depuis en dessus
     // Il n'y a donc pas de notion d'altitude qui intervient
 
     public partial class Land : Form
     {
-        public static readonly int WIDTH = 1200;        // Dimensions of the airspace
+        public static readonly int WIDTH = 1200;        // Dimensions de Land
         public static readonly int HEIGHT = 600;
 
         // La flotte est l'ensemble des drones qui évoluent dans notre espace aérien
@@ -144,8 +144,9 @@ namespace ChickInvaders
             }
             foreach (Foes foes in ufo)
             {
-                int randomX = GlobalHelpers.alea.Next(1, 50);
                 foes.UpdateF(interval);
+                // Ceci donne 1 chance sur 50 pour qu'un ufo lache un projectile par seconde
+                int randomX = GlobalHelpers.alea.Next(1, 50);
                 if (randomX == 1)
                 {
                     projectiles.Add(new Projectile(foes.X, foes.Y));
@@ -153,10 +154,10 @@ namespace ChickInvaders
             }
             foreach (Foes2 foes2 in ufo2)
             {
-                int randomX = GlobalHelpers.alea.Next(1, 300);
-                int randomXX = GlobalHelpers.alea.Next(1, 300);
                 foes2.UpdateF2(interval);
-                if (randomX == randomXX)
+                // Ceci donne 1 chance sur 50 pour qu'un ufo lache un projectile par seconde
+                int randomX = GlobalHelpers.alea.Next(1, 800);
+                if (randomX == 1)
                 {
                     projectiles.Add(new Projectile(foes2.X, foes2.Y));
                 }

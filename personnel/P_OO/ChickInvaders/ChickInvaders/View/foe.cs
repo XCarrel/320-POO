@@ -18,9 +18,6 @@ namespace ChickInvaders
             int foeSize = 100;
             int foeHeight = 100;
 
-            int imgWidth2 = foeImage1.Width;
-            int imgHeight2 = foeImage1.Height;
-
 
 
             // Faire en sorte que ça soit centré
