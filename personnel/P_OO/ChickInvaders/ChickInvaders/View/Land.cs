@@ -82,105 +82,111 @@ namespace ChickInvaders
                 eggs.Render(airspace);
             }
 
-            void Move(object sender, System.Windows.Forms.KeyEventArgs e)
-            {
-                foreach (Chick chick in coop)
-                {
-                    switch (e.KeyCode)
-                    {
-                        case Keys.W:
-                            chick.GoUp(5);
-                            break;
-                        case Keys.S:
-                            chick.GoDown(5);
-                            break;
-                        case Keys.D:
-                            chick.GoRight(5);
-                            break;
-                        case Keys.A:
-                            chick.GoLeft(5);
-                            break;
-                        case Keys.Space:
-                            foreach (Chick c in coop)
-                            {
-                                eggs.Add(new Eggs(c.X, c.Y));
-                            }
-                            break;
-                    }
-                }
-            }
+            airspace.Render();
+        }
 
-            void StopMove(object sender, System.Windows.Forms.KeyEventArgs e)
+        public void Move(object sender, System.Windows.Forms.KeyEventArgs e)
+        {
+            foreach (Chick chick in coop)
             {
-                foreach (Chick chick in coop)
+                switch (e.KeyCode)
                 {
-                    switch (e.KeyCode)
-                    {
-                        case Keys.W:
-                            chick.GoUp(0);
-                            break;
-                        case Keys.S:
-                            chick.GoDown(0);
-                            break;
-                        case Keys.D:
-                            chick.GoRight(0);
-                            break;
-                        case Keys.A:
-                            chick.GoLeft(0);
-                            break;
-                    }
-                }
-            }
-
-            // Calcul du nouvel état après que 'interval' millisecondes se sont écoulées
-            void Update(int interval)
-            {
-                foreach (Chick chick in coop)
-                {
-                    chick.Update(interval);
-                }
-                foreach (Foes foes in ufo)
-                {
-                    foes.UpdateF(interval);
-                    if (foes.X >= GlobalHelpers.alea.Next(1, 1200) && foes.X <= GlobalHelpers.alea.Next(1, 1200) && foes.X >= GlobalHelpers.alea.Next(1, 1200) && foes.X <= GlobalHelpers.alea.Next(1, 1200))
-                    {
-                        projectiles.Add(new Projectile(foes.X, foes.Y));
-                    }
-                }
-                foreach (Foes2 foes2 in ufo2)
-                {
-                    foes2.UpdateF2(interval);
-                    if (foes2.X >= GlobalHelpers.alea.Next(1, 1200) && foes2.X <= GlobalHelpers.alea.Next(1, 1200) && foes2.X >= GlobalHelpers.alea.Next(1, 1200) && foes2.X <= GlobalHelpers.alea.Next(1, 1200))
-                    {
-                        projectiles.Add(new Projectile(foes2.X, foes2.Y));
-                    }
-                }
-                foreach (Projectile projectile in projectiles)
-                {
-                    projectile.UpdateP(interval);
-                    if (projectile.Y > 500)
-                    {
-                        projectiles.Remove(projectile);
+                    case Keys.W:
+                        chick.GoUp(5);
                         break;
-                    }
-                }
-                foreach (Eggs egg in eggs)
-                {
-                    egg.UpdateE(interval);
-                    if (egg.Y <= 0)
-                    {
-                        eggs.Remove(egg);
+                    case Keys.S:
+                        chick.GoDown(5);
                         break;
-                    }
+                    case Keys.D:
+                        chick.GoRight(5);
+                        break;
+                    case Keys.A:
+                        chick.GoLeft(5);
+                        break;
+                    case Keys.Space:
+                        foreach (Chick c in coop)
+                        {
+                            eggs.Add(new Eggs(c.X, c.Y));
+                        }
+                        break;
                 }
             }
+        }
 
-            // Méthode appelée à chaque frame
-            void NewFrame(object sender, EventArgs e)
+        public void StopMove(object sender, System.Windows.Forms.KeyEventArgs e)
+        {
+            foreach (Chick chick in coop)
             {
-                this.Update(ticker.Interval);
-                this.Render();
+                switch (e.KeyCode)
+                {
+                    case Keys.W:
+                        chick.GoUp(0);
+                        break;
+                    case Keys.S:
+                        chick.GoDown(0);
+                        break;
+                    case Keys.D:
+                        chick.GoRight(0);
+                        break;
+                    case Keys.A:
+                        chick.GoLeft(0);
+                        break;
+                }
             }
+        }
+
+        // Calcul du nouvel état après que 'interval' millisecondes se sont écoulées
+        private void Update(int interval)
+        {
+            foreach (Chick chick in coop)
+            {
+                chick.Update(interval);
+            }
+            foreach (Foes foes in ufo)
+            {
+                int randomX = GlobalHelpers.alea.Next(1, 50);
+                int randomXX = GlobalHelpers.alea.Next(1, 50);
+                foes.UpdateF(interval);
+                if (randomX == randomXX)
+                {
+                    projectiles.Add(new Projectile(foes.X, foes.Y));
+                }
+            }
+            foreach (Foes2 foes2 in ufo2)
+            {
+                int randomX = GlobalHelpers.alea.Next(1, 50);
+                int randomXX = GlobalHelpers.alea.Next(1, 50);
+                foes2.UpdateF2(interval);
+                if (randomX == randomXX)
+                {
+                    projectiles.Add(new Projectile(foes2.X, foes2.Y));
+                }
+            }
+            foreach (Projectile projectile in projectiles)
+            {
+                projectile.UpdateP(interval);
+                if (projectile.Y > 500)
+                {
+                    projectiles.Remove(projectile);
+                    break;
+                }
+            }
+            foreach (Eggs egg in eggs)
+            {
+                egg.UpdateE(interval);
+                if (egg.Y <= 0)
+                {
+                    eggs.Remove(egg);
+                    break;
+                }
+            }
+        }
+
+        // Méthode appelée à chaque frame
+        private void NewFrame(object sender, EventArgs e)
+        {
+            this.Update(ticker.Interval);
+            this.Render();
         }
     }
 }
