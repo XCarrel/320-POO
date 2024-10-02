@@ -1,5 +1,4 @@
-﻿using ChickInvaders.Helpers;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,35 +7,26 @@ using System.Xml.Linq;
 
 namespace ChickInvaders
 {
-    public partial class Foes
+    public partial class Projectile
     {
-        // De manière graphique
         public void Render(BufferedGraphics drawingSpace)
         {
-            int imgWidth1 = foeImage1.Width;
-            int imgHeight1 = foeImage1.Height;
-            int foeSize = 100;
-            int foeHeight = 100;
-
+            int imgWidthProj = projImage.Width;
+            int imgHeightProj = projImage.Height;
+            int projSize = 40;
+            int projHeight = 40;
 
 
             // Faire en sorte que ça soit centré
             //int imgX = _x - foeSize / 2;
             //int imgY = _y - foeHeight / 2;
 
-            int imgX = fx;
-            int imgY = fy;
+            int imgX = px;
+            int imgY = py;
 
-            drawingSpace.Graphics.DrawImage(foeImage1, new Rectangle(imgX, imgY, foeSize, foeHeight));
+            drawingSpace.Graphics.DrawImage(projImage, new Rectangle(imgX, imgY, projSize, projHeight));
             //drawingSpace.Graphics.DrawImage(foeImage2, new Rectangle(imgX, imgY, foeSize, foeHeight));
             //drawingSpace.Graphics.DrawString($"{this}", TextHelpers.drawFont, TextHelpers.writingBrush, _x + imgWidth / 2 + 5, _y - imgHeight / 2);
         }
-
-        // De manière textuelle
-        public override string ToString()
-        {
-            return $"{Name} ({((int)((double)_charge / FULLCHARGE * 100)).ToString()}%)";
-        }
-
     }
 }

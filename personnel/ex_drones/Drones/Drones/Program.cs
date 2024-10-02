@@ -15,21 +15,47 @@ namespace Drones
             ApplicationConfiguration.Initialize();
 
             // Création de la flotte de drones
-            List<Drone> fleet= new List<Drone>();
-            Drone drone = new Drone();
-            drone.Attributs(100, 100, "joe");
-            fleet.Add(drone);
-
+            List<Drone> fleet = new List<Drone>();
             List<Building> area = new List<Building>();
-            for (int i = 0; i < 10; i++)
+            Console.WriteLine("Nombre de drones :");
+            string nbDrones = Console.ReadLine();
+            int nb;
+            if (int.TryParse(nbDrones, out nb))
             {
-                Building building = new Building();
-                area.Add(building);
-                building.UpdateB();
+                if (nb <= 10)
+                {
+                    for (int i = 0; i < nb; i++)
+                    {
+                        Drone drone = new Drone();
+                        drone.Attributs(100, 100, "joe");
+                        fleet.Add(drone);
+                    }
+                    for (int i = 0; i < 10; i++)
+                    {
+                        Building building = new Building();
+                        area.Add(building);
+                        building.UpdateB();
+                    }
+                    try
+                    {
+                        // Démarrage
+                        Application.Run(new AirSpace(fleet, area));
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                        Console.ReadLine();
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("La valeur doit valoire 10 ou moins !");
+                }
             }
-
-            // Démarrage
-            Application.Run(new AirSpace(fleet, area));
+            else
+            {
+                Console.WriteLine("Valeur incorrecte !");
+            }
         }
     }
 }
