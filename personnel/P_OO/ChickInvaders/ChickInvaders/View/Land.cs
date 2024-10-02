@@ -17,6 +17,9 @@ namespace ChickInvaders
         // La flotte est l'ensemble des drones qui évoluent dans notre espace aérien
         private List<Chick> coop;
         private List<Foes> ufo;
+        private List<Foes2> ufo2;
+        private List<Projectile> projectiles;
+        private List<Eggs> eggs;
 
         BufferedGraphicsContext currentContext;
         BufferedGraphics airspace;
@@ -24,7 +27,7 @@ namespace ChickInvaders
         private Image background;
 
         // Initialisation de l'espace aérien avec un certain nombre de drones
-        public Land(List<Chick> coop, List<Foes> ufo) : base()
+        public Land(List<Chick> coop, List<Foes> ufo, List<Foes2> ufo2, List<Projectile> projectiles, List<Eggs> eggs) : base()
         {
             InitializeComponent();
             this.Size = new Size(WIDTH, HEIGHT);
@@ -38,6 +41,9 @@ namespace ChickInvaders
             airspace = currentContext.Allocate(this.CreateGraphics(), this.DisplayRectangle);
             this.coop = coop;
             this.ufo = ufo;
+            this.ufo2 = ufo2;
+            this.projectiles = projectiles;
+            this.eggs = eggs;
             SetBackgroundImage("background.png");
         }
 
@@ -63,75 +69,118 @@ namespace ChickInvaders
             {
                 foes.Render(airspace);
             }
-            //if (fx == 30 || 40 || 50)
-            //{
-            //    Projectile.Render(airspace);
-            //}
-            airspace.Render();
-        }
-
-        public void Move(object sender, System.Windows.Forms.KeyEventArgs e)
-        {
-            foreach (Chick chick in coop)
+            foreach (Foes2 foes2 in ufo2)
             {
-                switch (e.KeyCode)
+                foes2.Render(airspace);
+            }
+            foreach (Projectile projectile in projectiles)
+            {
+                projectile.Render(airspace);
+            }
+            foreach (Eggs eggs in eggs)
+            {
+                eggs.Render(airspace);
+            }
+
+            void Move(object sender, System.Windows.Forms.KeyEventArgs e)
+            {
+                foreach (Chick chick in coop)
                 {
-                    case Keys.W:
-                        chick.GoUp(3);
-                        break;
-                    case Keys.S:
-                        chick.GoDown(3);
-                        break;
-                    case Keys.D:
-                        chick.GoRight(3);
-                        break;
-                    case Keys.A:
-                        chick.GoLeft(3);
-                        break;
+                    switch (e.KeyCode)
+                    {
+                        case Keys.W:
+                            chick.GoUp(5);
+                            break;
+                        case Keys.S:
+                            chick.GoDown(5);
+                            break;
+                        case Keys.D:
+                            chick.GoRight(5);
+                            break;
+                        case Keys.A:
+                            chick.GoLeft(5);
+                            break;
+                        case Keys.Space:
+                            foreach (Chick c in coop)
+                            {
+                                eggs.Add(new Eggs(c.X, c.Y));
+                            }
+                            break;
+                    }
                 }
             }
-        }
 
-        public void StopMove(object sender, System.Windows.Forms.KeyEventArgs e)
-        {
-            foreach (Chick chick in coop)
+            void StopMove(object sender, System.Windows.Forms.KeyEventArgs e)
             {
-                switch (e.KeyCode)
+                foreach (Chick chick in coop)
                 {
-                    case Keys.W:
-                        chick.GoUp(0);
-                        break;
-                    case Keys.S:
-                        chick.GoDown(0);
-                        break;
-                    case Keys.D:
-                        chick.GoRight(0);
-                        break;
-                    case Keys.A:
-                        chick.GoLeft(0);
-                        break;
+                    switch (e.KeyCode)
+                    {
+                        case Keys.W:
+                            chick.GoUp(0);
+                            break;
+                        case Keys.S:
+                            chick.GoDown(0);
+                            break;
+                        case Keys.D:
+                            chick.GoRight(0);
+                            break;
+                        case Keys.A:
+                            chick.GoLeft(0);
+                            break;
+                    }
                 }
             }
-        }
 
-        // Calcul du nouvel état après que 'interval' millisecondes se sont écoulées
-        private void Update(int interval)
-        {
-            foreach (Chick chick in coop)
+            // Calcul du nouvel état après que 'interval' millisecondes se sont écoulées
+            void Update(int interval)
             {
-                chick.Update(interval);
+                foreach (Chick chick in coop)
+                {
+                    chick.Update(interval);
+                }
+                foreach (Foes foes in ufo)
+                {
+                    foes.UpdateF(interval);
+                    if (foes.X >= GlobalHelpers.alea.Next(1, 1200) && foes.X <= GlobalHelpers.alea.Next(1, 1200) && foes.X >= GlobalHelpers.alea.Next(1, 1200) && foes.X <= GlobalHelpers.alea.Next(1, 1200))
+                    {
+                        projectiles.Add(new Projectile(foes.X, foes.Y));
+                    }
+                }
+                foreach (Foes2 foes2 in ufo2)
+                {
+                    foes2.UpdateF2(interval);
+                    if (foes2.X >= GlobalHelpers.alea.Next(1, 1200) && foes2.X <= GlobalHelpers.alea.Next(1, 1200) && foes2.X >= GlobalHelpers.alea.Next(1, 1200) && foes2.X <= GlobalHelpers.alea.Next(1, 1200))
+                    {
+                        projectiles.Add(new Projectile(foes2.X, foes2.Y));
+                    }
+                }
+                foreach (Projectile projectile in projectiles)
+                {
+                    projectile.UpdateP(interval);
+                    if (projectile.Y > 500)
+                    {
+                        projectiles.Remove(projectile);
+                        break;
+                    }
+                }
+                foreach (Eggs egg in eggs)
+                {
+                    egg.UpdateE(interval);
+                    if (egg.Y <= 0)
+                    {
+                        eggs.Remove(egg);
+                        break;
+                    }
+                }
             }
-            foreach (Foes foes in ufo)
-            {
-                foes.UpdateF(interval);
-            }
-        }
 
-        // Méthode appelée à chaque frame
-        private void NewFrame(object sender, EventArgs e)
-        {
-            this.Update(ticker.Interval);
-            this.Render();
+            // Méthode appelée à chaque frame
+            void NewFrame(object sender, EventArgs e)
+            {
+                this.Update(ticker.Interval);
+                this.Render();
+            }
         }
     }
 }

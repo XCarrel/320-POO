@@ -21,11 +21,13 @@ namespace ChickInvaders
             projImage = Image.FromFile("projectile_foe.png");
         }
         public int X { get { return px; } }
+        public int Y { get { return py; } }
         
         // Cette méthode calcule le nouvel état dans lequel le drone se trouve après
         // que 'interval' millisecondes se sont écoulées
         public void UpdateP(int interval)
         {
+            py = py + 5;
             py++;
         }
     }
