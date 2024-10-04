@@ -1,4 +1,4 @@
-using Drones.View;
+using Drones;
 
 namespace Drones
 {
@@ -22,7 +22,7 @@ namespace Drones
             int nb;
             if (int.TryParse(nbDrones, out nb))
             {
-                if (nb <= 10)
+                if (nb > 0 && nb <= 10)
                 {
                     for (int i = 0; i < nb; i++)
                     {
@@ -32,9 +32,11 @@ namespace Drones
                     }
                     for (int i = 0; i < 10; i++)
                     {
-                        Building building = new Building();
-                        area.Add(building);
-                        building.UpdateB();
+                        area.Add(new Factory(i));
+                    }
+                    for(int i = 0;i < 2; i++)
+                    {
+                        area.Add(new Store());
                     }
                     try
                     {
@@ -46,10 +48,17 @@ namespace Drones
                         Console.WriteLine(e.Message);
                         Console.ReadLine();
                     }
+                    foreach (Building building in area)
+                    {
+                        if (building.boxIsCreated)
+                        {
+                            Box box = new Box();
+                        }
+                    }
                 }
                 else
                 {
-                    Console.WriteLine("La valeur doit valoire 10 ou moins !");
+                    Console.WriteLine("La valeur doit être entre 0 et 10 !");
                 }
             }
             else
