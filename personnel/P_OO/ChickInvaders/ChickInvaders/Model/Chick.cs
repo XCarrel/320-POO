@@ -3,8 +3,8 @@
     // Cette partie de la classe Drone définit ce qu'est un drone par un modèle numérique
     public partial class Chick
     {
-        public static readonly int FULLCHARGE = 1000;   // Charge maximale de la batterie
-        private int _charge;                            // La charge actuelle de la batterie
+        public static readonly int vieMax = 3;          // Charge maximale de la batterie
+        private int vie;                                // La charge actuelle de la batterie
         private string _name;                           // Un nom
         private int _x;                                 // Position en X depuis la gauche de l'espace aérien
         private int _y;                                 // Position en Y depuis le haut de l'espace aérien
@@ -19,13 +19,12 @@
             _x = x;
             _y = y;
             _name = name;
-            _charge = FULLCHARGE;
-            //_charge = GlobalHelpers.alea.Next(FULLCHARGE); // La charge initiale de la batterie est choisie aléatoirement
+            vie = vieMax;
             chickImage = Image.FromFile("chick.png");
         }
-        public int X { get { return _x;} }
-        public int Y { get { return _y;} }
-        public string Name { get { return _name;} }
+        public int X { get { return _x; } }
+        public int Y { get { return _y; } }
+        public string Name { get { return _name; } }
 
         public void GoLeft(int speed)
         {
@@ -61,17 +60,35 @@
             _x += _speedX;
         }
 
-        public void Shoot()
-        {
-
-        }
-
         // Cette méthode calcule le nouvel état dans lequel le drone se trouve après
         // que 'interval' millisecondes se sont écoulées
         public void Update(int interval)
         {
-            _x += _speedX;
-            _y += _speedY;
+            if (_x > 20 && _x < 1180)
+            {
+                _x += _speedX;
+            }
+            else if (_x <= 20)
+            {
+                _x = 22;
+            }
+            else if (_x >= 1180)
+            {
+                _x = 1178;
+            }
+
+            if (_y > 200 && _y < 535)
+            {
+                _y += _speedY;
+            }
+            else if (_y <= 200)
+            {
+                _y = 202;
+            }
+            else if (_y >= 535)
+            {
+                _y = 533;
+            }
         }
     }
 }

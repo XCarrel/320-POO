@@ -11,6 +11,8 @@ namespace ChickInvaders
         {
             int imgWidth = chickImage.Width;
             int imgHeight = chickImage.Height;
+
+            // Taille de l'image
             int chickSize = 50;
             int chickHeight = 50;
 
@@ -38,7 +40,7 @@ namespace ChickInvaders
         // De manière textuelle
         public override string ToString()
         {
-            return $"{Name} ({((int)((double)_charge / FULLCHARGE * 100)).ToString()}%)";
+            return $"{Name} ({((int)((double)vie / vieMax * 100)).ToString()}%)";
         }
 
     }
