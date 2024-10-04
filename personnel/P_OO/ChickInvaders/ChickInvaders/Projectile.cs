@@ -28,6 +28,7 @@ namespace ChickInvaders
         public void UpdateP(int interval)
         {
             py = py + 5;
+            py++;
         }
     }
 }

@@ -16,6 +16,7 @@ namespace ChickInvaders
         private List<Image> images = new List<Image>();
         private Image foeImage1;
         private int speedF;
+        private Image foeImage2;
 
         // Constructeur
         public Foes(int x, int y, string name)
@@ -25,7 +26,6 @@ namespace ChickInvaders
             _name = name;
             speedF = GlobalHelpers.alea.Next(1, 8);
             _charge = FULLCHARGE;
-            //_charge = GlobalHelpers.alea.Next(FULLCHARGE); // La charge initiale de la batterie est choisie aléatoirement
             foeImage1 = Image.FromFile("foe1.png");
         }
         public int X { get { return fx; } }
@@ -39,6 +39,7 @@ namespace ChickInvaders
             if (fx < 1100)
             {
                 fx += speedF;
+                fx++;
             }
             else
             {
