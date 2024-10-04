@@ -1,4 +1,4 @@
-using Drones.View;
+using Drones;
 
 namespace Drones
 {
@@ -41,12 +41,14 @@ namespace Drones
             {
                 drone.Render(airspace);
             }
-
             foreach (Building building in area)
             {
-                building.Render(airspace);
+                building.Render(airspace, false);
             }
-
+            foreach (Factory factory1 in area)
+            {
+                factory1.Render(airspace, false);
+            }
             airspace.Render();
         }
 

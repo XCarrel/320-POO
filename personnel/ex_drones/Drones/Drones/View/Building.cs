@@ -1,33 +1,152 @@
-﻿using Drones.Helpers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Drawing;
 
-namespace Drones.View
+namespace Drones
+
 {
+
+    // Cette partie de la classe Drone définit ce qu'est un drone par un modèle numérique
+
     public partial class Building
+
     {
-        Random alea = new Random();
 
-        private int emplacementX;
-        private int emplacementY;
-        private int largeur;
-        private int profondeur;
+        protected int _x;                                 // Position en X depuis la gauche de l'espace aérien
+        protected int _y;                                 // Position en Y depuis le haut de l'espace aérien
+        protected int _death = 10;
+        protected int _width = 10;
+        private Color _color;
 
-        private Pen buildingBrush = new Pen(new SolidBrush(Color.Black), 3);
-        public void Render(BufferedGraphics drawingSpace)
+
+        // Constructeur
+
+        public Building()
+
         {
-            drawingSpace.Graphics.DrawRectangle(buildingBrush, new Rectangle(emplacementX - 4, emplacementY - 2, 8, 8));
-            //drawingSpace.Graphics.DrawString($"{this}", TextHelpers.drawFont, TextHelpers.writingBrush, emplacementX + 5, emplacementY - 5);
+
+            _x = GlobalHelpers.alea.Next(0, AirSpace.WIDTH);
+
+            _y = GlobalHelpers.alea.Next(0, AirSpace.HEIGHT);
+
+            _color = Color.Blue;
+
+            _droneBrush = new Pen(new SolidBrush(_color), 3);
+
         }
-        public void UpdateB()
+
+        public int X { get { return _x; } }
+        public int Y { get { return _y; } }
+        public int Death { get { return _death; } }
+        public int Width { get { return _width; } }
+
+        protected Color Color
+
         {
-            emplacementX = alea.Next(1, 1200);
-            emplacementY = alea.Next(1, 500);
+
+            get => _color;
+
+            set
+
+            {
+
+                _color = value;
+
+            }
+
         }
+
+        public void Show()
+
+        {
+
+            Console.WriteLine("posX : " + _x);
+            Console.WriteLine("posY : " + _y);
+            Console.WriteLine("Color : " + _color);
+
+        }
+
     }
+
+    public class Factory : Building
+
+    {
+
+        private float _PowerConsumption;
+
+        private Color _color;
+
+        private int _id;
+
+
+        public Factory(int id)
+
+        {
+
+            _PowerConsumption = GlobalHelpers.alea.Next(0, 100);
+
+            _color = Color.Gray;
+
+            _id = id;
+
+        }
+
+
+        public void Show()
+
+        {
+
+            Console.WriteLine("posX : " + _x);
+
+            Console.WriteLine("posY : " + _y);
+
+            Console.WriteLine("Color : " + _color);
+
+            Console.WriteLine("Power consumption : " + _PowerConsumption);
+
+        }
+
+        public void Update()
+
+        {
+
+        }
+
+    }
+
+    public class Store : Building
+
+    {
+
+        private string _OpeningHours;
+
+        private Color _color;
+
+
+
+        public Store()
+
+        {
+
+            _OpeningHours = "24/7";
+
+            _color = Color.Green;
+
+        }
+
+        public void Show()
+
+        {
+
+            Console.WriteLine("posX : " + _x);
+
+            Console.WriteLine("posY : " + _y);
+
+            Console.WriteLine("Color : " + _color);
+
+            Console.WriteLine("Open hours : " + _OpeningHours);
+
+        }
+
+    }
+
 }
+

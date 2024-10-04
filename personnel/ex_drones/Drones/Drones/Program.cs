@@ -1,4 +1,4 @@
-using Drones.View;
+using Drones;
 
 namespace Drones
 {
@@ -17,12 +17,13 @@ namespace Drones
             // Création de la flotte de drones
             List<Drone> fleet = new List<Drone>();
             List<Building> area = new List<Building>();
+            List<Factory> factory = new List<Factory>();
             Console.WriteLine("Nombre de drones :");
             string nbDrones = Console.ReadLine();
             int nb;
             if (int.TryParse(nbDrones, out nb))
             {
-                if (nb <= 10)
+                if (nb > 0 && nb <= 10)
                 {
                     for (int i = 0; i < nb; i++)
                     {
@@ -34,7 +35,16 @@ namespace Drones
                     {
                         Building building = new Building();
                         area.Add(building);
-                        building.UpdateB();
+                    }
+                    for (int i = 0; i < 10; i++)
+                    {
+                        Factory factory1 = new Factory(10);
+                        area.Add(factory1);
+                    }
+                    for (int i = 0; i < 10; i++)
+                    {
+                        Store store = new Store();
+                        area.Add(store);
                     }
                     try
                     {
@@ -49,7 +59,7 @@ namespace Drones
                 }
                 else
                 {
-                    Console.WriteLine("La valeur doit valoire 10 ou moins !");
+                    Console.WriteLine("La valeur doit être entre 0 et 10 !");
                 }
             }
             else

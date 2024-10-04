@@ -44,7 +44,7 @@ namespace Drones
         {
             state = EvacuationState.Free;
         }
-
+        
         public EvacuationState GetEvacuationState()
         {
             return state;
