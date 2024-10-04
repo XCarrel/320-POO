@@ -30,7 +30,6 @@ namespace ChickInvaders
             ufo2.Add(new Foes2(0, 0, "André"));
             ufo2.Add(new Foes2(0, 0, "Lucio"));
             ufo2.Add(new Foes2(0, 0, "Joe"));
-            //ufo.Add(new Foes(0, 70, "Arthauer"));
             // Démarrage
             Application.Run(new Land(coop, ufo, ufo2, projectiles, eggs));
         }

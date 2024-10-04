@@ -13,6 +13,8 @@ namespace ChickInvaders
         {
             int imgWidthProj = projImage.Width;
             int imgHeightProj = projImage.Height;
+
+            // Taille de l'image
             int projSize = 40;
             int projHeight = 40;
 

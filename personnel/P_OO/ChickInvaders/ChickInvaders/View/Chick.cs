@@ -11,6 +11,7 @@ namespace ChickInvaders
         {
             int imgWidth = chickImage.Width;
             int imgHeight = chickImage.Height;
+
             // Taille de l'image
             int chickSize = 50;
             int chickHeight = 50;
