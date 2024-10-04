@@ -17,7 +17,6 @@ namespace Drones
             // Création de la flotte de drones
             List<Drone> fleet = new List<Drone>();
             List<Building> area = new List<Building>();
-            List<Factory> factory = new List<Factory>();
             Console.WriteLine("Nombre de drones :");
             string nbDrones = Console.ReadLine();
             int nb;
@@ -33,18 +32,11 @@ namespace Drones
                     }
                     for (int i = 0; i < 10; i++)
                     {
-                        Building building = new Building();
-                        area.Add(building);
+                        area.Add(new Factory(i));
                     }
-                    for (int i = 0; i < 10; i++)
+                    for(int i = 0;i < 2; i++)
                     {
-                        Factory factory1 = new Factory(10);
-                        area.Add(factory1);
-                    }
-                    for (int i = 0; i < 10; i++)
-                    {
-                        Store store = new Store();
-                        area.Add(store);
+                        area.Add(new Store());
                     }
                     try
                     {
@@ -55,6 +47,13 @@ namespace Drones
                     {
                         Console.WriteLine(e.Message);
                         Console.ReadLine();
+                    }
+                    foreach (Building building in area)
+                    {
+                        if (building.boxIsCreated)
+                        {
+                            Box box = new Box();
+                        }
                     }
                 }
                 else
