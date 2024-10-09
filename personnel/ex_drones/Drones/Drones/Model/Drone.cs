@@ -1,5 +1,4 @@
-﻿
-using System.ComponentModel;
+﻿using System.ComponentModel;
 
 namespace Drones
 {
@@ -28,6 +27,7 @@ namespace Drones
 
         public bool Evacuate(Rectangle zone)
         {
+            throw new NotImplementedException();
             if (zone.IntersectsWith(new Rectangle(x - 4, y - 2, 8, 8)))
             {
                 state = EvacuationState.Evacuating;
@@ -42,11 +42,13 @@ namespace Drones
 
         public void FreeFlight()
         {
+            throw new NotImplementedException();
             state = EvacuationState.Free;
         }
         
         public EvacuationState GetEvacuationState()
         {
+            throw new NotImplementedException();
             return state;
         }
 
