@@ -4,7 +4,7 @@
     public partial class Chick
     {
         public static readonly int vieMax = 3;          // Charge maximale de la batterie
-        private int vie;                                // La charge actuelle de la batterie
+        public int vie;                                // La charge actuelle de la batterie
         private string _name;                           // Un nom
         private int _x;                                 // Position en X depuis la gauche de l'espace aérien
         private int _y;                                 // Position en Y depuis le haut de l'espace aérien
@@ -12,6 +12,9 @@
         private int _speedX = 0;
         private int _speedY = 0;
         public bool isFacingLeft;
+        public Rectangle chickHitbox { get; private set; }
+        private int chickWidth;
+        private int chickHeight;
 
         // Constructeur
         public Chick(int x, int y, string name)
@@ -21,10 +24,17 @@
             _name = name;
             vie = vieMax;
             chickImage = Image.FromFile("chick.png");
+            chickWidth = 50;
+            chickHeight = 50;
         }
         public int X { get { return _x; } }
         public int Y { get { return _y; } }
         public string Name { get { return _name; } }
+
+        private void UpdateHitbox()
+        {
+            chickHitbox = new Rectangle(_x - 25, _y - 25, chickWidth, chickHeight);
+        }
 
         public void GoLeft(int speed)
         {
@@ -89,6 +99,8 @@
             {
                 _y = 533;
             }
+
+            UpdateHitbox();
         }
     }
 }
