@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,8 +22,8 @@ namespace ChickInvaders
             cx = x;
             cy = y;
             coeurImage = Image.FromFile("coeur.png");
-            coeurWidth = 16;
-            coeurHeight = 16;
+            coeurWidth = 26;
+            coeurHeight = 26;
         }
         public int X { get { return cx; } }
         public int Y { get { return cy; } }
@@ -36,8 +37,8 @@ namespace ChickInvaders
         // que 'interval' millisecondes se sont écoulées
         public void UpdateC(int interval)
         {
-            cx = GlobalHelpers.alea.Next(20, 1180);
-            cy = GlobalHelpers.alea.Next(200, 535);
+            //cx = GlobalHelpers.alea.Next(20, 1180);
+            //cy = GlobalHelpers.alea.Next(200, 535);
 
             UpdateHitbox();
         }

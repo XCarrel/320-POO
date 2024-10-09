@@ -12,8 +12,8 @@ namespace ChickInvaders
         {
             int imgWidthProj = coeurImage.Width;
             int imgHeightProj = coeurImage.Height;
-            int coeurSize = 20;
-            int coeurHeight = 20;
+            int coeurSize = 30;
+            int coeurHeight = 30;
 
 
             // Faire en sorte que ça soit centré
@@ -26,7 +26,7 @@ namespace ChickInvaders
             drawingSpace.Graphics.DrawImage(coeurImage, new Rectangle(imgX, imgY, coeurSize, coeurHeight));
             //drawingSpace.Graphics.DrawImage(foeImage2, new Rectangle(imgX, imgY, foeSize, foeHeight));
             //drawingSpace.Graphics.DrawString($"{this}", TextHelpers.drawFont, TextHelpers.writingBrush, _x + imgWidth / 2 + 5, _y - imgHeight / 2);
-            drawingSpace.Graphics.DrawRectangle(Pens.Red, coeurHitbox);
+            //drawingSpace.Graphics.DrawRectangle(Pens.Red, coeurHitbox);
         }
     }
 }
