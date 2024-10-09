@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace Drones
 {
-    public partial class Dispatch
+    public interface IDispatchable
     {
-        public Dispatch()
-        {
 
-        }
     }
 }

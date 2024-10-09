@@ -16,6 +16,8 @@ namespace ChickInvaders
             int chickSize = 50;
             int chickHeight = 50;
 
+
+
             //if (isFacingLeft)
             //using (Image Flippedfish = Image.FromFile("chick.png"))
             //{
@@ -35,6 +37,7 @@ namespace ChickInvaders
 
             drawingSpace.Graphics.DrawImage(chickImage, new Rectangle(imgX, imgY, chickSize, chickHeight));
             //drawingSpace.Graphics.DrawString($"{this}", TextHelpers.drawFont, TextHelpers.writingBrush, _x + imgWidth / 2 + 5, _y - imgHeight / 2);
+            //drawingSpace.Graphics.DrawRectangle(Pens.Red, chickHitbox);
         }
 
         // De manière textuelle

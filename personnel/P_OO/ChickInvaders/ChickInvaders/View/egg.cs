@@ -26,6 +26,7 @@ namespace ChickInvaders
             drawingSpace.Graphics.DrawImage(eggImage, new Rectangle(imgX, imgY, eggSize, eggHeight));
             //drawingSpace.Graphics.DrawImage(foeImage2, new Rectangle(imgX, imgY, foeSize, foeHeight));
             //drawingSpace.Graphics.DrawString($"{this}", TextHelpers.drawFont, TextHelpers.writingBrush, _x + imgWidth / 2 + 5, _y - imgHeight / 2);
+            //drawingSpace.Graphics.DrawRectangle(Pens.Red, eggHitbox);
         }
     }
 }

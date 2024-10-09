@@ -20,14 +20,18 @@ namespace ChickInvaders
         private List<Foes2> ufo2;
         private List<Projectile> projectiles;
         private List<Eggs> eggs;
+        private List<Coeur> coeurs;
 
         BufferedGraphicsContext currentContext;
         BufferedGraphics airspace;
 
         private Image background;
 
+        public bool removeEgg;
+        public bool removeEgg2;
+
         // Initialisation de l'espace aérien avec un certain nombre de drones
-        public Land(List<Chick> coop, List<Foes> ufo, List<Foes2> ufo2, List<Projectile> projectiles, List<Eggs> eggs) : base()
+        public Land(List<Chick> coop, List<Foes> ufo, List<Foes2> ufo2, List<Projectile> projectiles, List<Eggs> eggs, List<Coeur> coeurs) : base()
         {
             InitializeComponent();
             this.Size = new Size(WIDTH, HEIGHT);
@@ -44,6 +48,7 @@ namespace ChickInvaders
             this.ufo2 = ufo2;
             this.projectiles = projectiles;
             this.eggs = eggs;
+            this.coeurs = coeurs;
             SetBackgroundImage("background.png");
         }
 
@@ -81,6 +86,10 @@ namespace ChickInvaders
             {
                 eggs.Render(airspace);
             }
+            foreach (Coeur coeur in coeurs)
+            {
+                coeur.Render(airspace);
+            }
 
             airspace.Render();
         }
@@ -104,9 +113,12 @@ namespace ChickInvaders
                         chick.GoLeft(5);
                         break;
                     case Keys.Space:
-                        foreach (Chick c in coop)
+                        if (eggs.Count == 0)
                         {
-                            eggs.Add(new Eggs(c.X, c.Y));
+                            foreach (Chick c in coop)
+                            {
+                                eggs.Add(new Eggs(c.X, c.Y));
+                            }
                         }
                         break;
                 }
@@ -141,44 +153,102 @@ namespace ChickInvaders
             foreach (Chick chick in coop)
             {
                 chick.Update(interval);
+                int randomC = GlobalHelpers.alea.Next(1, 50);
+                if (randomC == 1)
+                {
+                    coeurs.Add(new Coeur(GlobalHelpers.alea.Next(20, 1180), GlobalHelpers.alea.Next(200, 535)));
+                }
             }
+            List<Projectile> projectilesToRemove = new List<Projectile>();
             foreach (Foes foes in ufo)
             {
                 foes.UpdateF(interval);
-                // Ceci donne 1 chance sur 50 pour qu'un ufo lache un projectile par seconde
-                int randomX = GlobalHelpers.alea.Next(1, 50);
+                // Ceci donne 1 chance sur 200 pour qu'un ufo lache un projectile par seconde
+                int randomX = GlobalHelpers.alea.Next(1, 200);
                 if (randomX == 1)
                 {
-                    projectiles.Add(new Projectile(foes.X, foes.Y));
+                    projectiles.Add(new Projectile(foes.X + 40, foes.Y + 30));
                 }
             }
             foreach (Foes2 foes2 in ufo2)
             {
                 foes2.UpdateF2(interval);
-                // Ceci donne 1 chance sur 50 pour qu'un ufo lache un projectile par seconde
-                int randomX = GlobalHelpers.alea.Next(1, 800);
+                // Ceci donne 1 chance sur 200 pour qu'un ufo lache un projectile par seconde
+                int randomX = GlobalHelpers.alea.Next(1, 200);
                 if (randomX == 1)
                 {
-                    projectiles.Add(new Projectile(foes2.X, foes2.Y));
+                    projectiles.Add(new Projectile(foes2.X + 20, foes2.Y + 30));
                 }
             }
             foreach (Projectile projectile in projectiles)
             {
                 projectile.UpdateP(interval);
+                foreach (Chick chick in coop)
+                {
+                    if (chick.chickHitbox.IntersectsWith(projectile.projHitbox))
+                    {
+                        chick.vie--;
+                        Console.WriteLine(chick.vie);
+                        projectilesToRemove.Add(projectile);
+                        break;
+                    }
+                    if (chick.vie == 0)
+                    {
+                        Environment.Exit(0);
+                        return;
+                    }
+                }
                 if (projectile.Y > 550)
                 {
-                    projectiles.Remove(projectile);
+                    projectilesToRemove.Add(projectile);
                     break;
                 }
+            }
+            foreach (Projectile projectile in projectilesToRemove)
+            {
+                projectiles.Remove(projectile);
             }
             foreach (Eggs egg in eggs)
             {
                 egg.UpdateE(interval);
+                foreach (Foes foes in ufo)
+                {
+                    if (foes.foeHitbox1.IntersectsWith(egg.eggHitbox))
+                    {
+                        removeEgg = true;
+                        ufo.Remove(foes);
+                        break;
+                    }
+                    if (removeEgg)
+                    {
+                        eggs.Remove(egg);
+                    }
+                    removeEgg = false;
+                }
+                foreach (Foes2 foes2 in ufo2)
+                {
+                    if (foes2.foeHitbox2.IntersectsWith(egg.eggHitbox))
+                    {
+                        removeEgg = true;
+                        ufo2.Remove(foes2);
+                        break;
+                    }
+                    if (removeEgg)
+                    {
+                        eggs.Remove(egg);
+                    }
+                    removeEgg = false;
+                }
                 if (egg.Y <= 0)
                 {
                     eggs.Remove(egg);
                     break;
                 }
+                break;
+            }
+            foreach (Coeur coeur in coeurs)
+            {
+                coeur.UpdateC(interval);
             }
         }
 

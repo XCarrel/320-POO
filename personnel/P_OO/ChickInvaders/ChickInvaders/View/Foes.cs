@@ -16,7 +16,9 @@ namespace ChickInvaders
         private List<Image> images = new List<Image>();
         private Image foeImage1;
         private int speedF;
-        private Image foeImage2;
+        public Rectangle foeHitbox1 { get; private set; }
+        private int foeWidth1;
+        private int foeHeight1;
 
         // Constructeur
         public Foes(int x, int y, string name)
@@ -27,10 +29,17 @@ namespace ChickInvaders
             speedF = GlobalHelpers.alea.Next(1, 8);
             _charge = FULLCHARGE;
             foeImage1 = Image.FromFile("foe1.png");
+            foeWidth1 = 50;
+            foeHeight1 = 35;
         }
         public int X { get { return fx; } }
         public int Y { get { return fy; } }
         public string Name { get { return _name; } }
+
+        private void UpdateHitbox()
+        {
+            foeHitbox1 = new Rectangle(fx + 25, fy + 32, foeWidth1, foeHeight1);
+        }
 
         // Cette méthode calcule le nouvel état dans lequel le drone se trouve après
         // que 'interval' millisecondes se sont écoulées
@@ -47,6 +56,7 @@ namespace ChickInvaders
                 speedF = GlobalHelpers.alea.Next(1, 8);
                 fy = GlobalHelpers.alea.Next(1, 150);
             }
+            UpdateHitbox();
         }
     }
 }
