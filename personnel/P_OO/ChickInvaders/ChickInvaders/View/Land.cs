@@ -21,6 +21,7 @@ namespace ChickInvaders
         private List<Projectile> projectiles;
         private List<Eggs> eggs;
         private List<Coeur> coeurs;
+        private List<Beetle> beets;
 
         BufferedGraphicsContext currentContext;
         BufferedGraphics airspace;
@@ -29,9 +30,10 @@ namespace ChickInvaders
 
         public bool removeEgg;
         public bool removeEgg2;
+        public bool eggIsRemoved = true;
 
         // Initialisation de l'espace aérien avec un certain nombre de drones
-        public Land(List<Chick> coop, List<Foes> ufo, List<Foes2> ufo2, List<Projectile> projectiles, List<Eggs> eggs, List<Coeur> coeurs) : base()
+        public Land(List<Chick> coop, List<Foes> ufo, List<Foes2> ufo2, List<Projectile> projectiles, List<Eggs> eggs, List<Coeur> coeurs, List<Beetle> beets) : base()
         {
             InitializeComponent();
             this.Size = new Size(WIDTH, HEIGHT);
@@ -50,6 +52,7 @@ namespace ChickInvaders
             this.eggs = eggs;
             this.coeurs = coeurs;
             SetBackgroundImage("background.png");
+            this.beets = beets;
         }
 
         public void SetBackgroundImage(string filePath)
@@ -90,6 +93,10 @@ namespace ChickInvaders
             {
                 coeur.Render(airspace);
             }
+            foreach (Beetle beetle in beets)
+            {
+                beetle.Render(airspace);
+            }
 
             airspace.Render();
         }
@@ -120,6 +127,9 @@ namespace ChickInvaders
                                 eggs.Add(new Eggs(c.X, c.Y));
                             }
                         }
+                        break;
+                    case Keys.Escape:
+                        Environment.Exit(0);
                         break;
                 }
             }
@@ -153,10 +163,18 @@ namespace ChickInvaders
             foreach (Chick chick in coop)
             {
                 chick.Update(interval);
-                int randomC = GlobalHelpers.alea.Next(1, 50);
-                if (randomC == 1)
+                int randomC = GlobalHelpers.alea.Next(1, 200);
+                if (randomC == 2)
                 {
-                    coeurs.Add(new Coeur(GlobalHelpers.alea.Next(20, 1180), GlobalHelpers.alea.Next(200, 535)));
+                    beets.Add(new Beetle(0, GlobalHelpers.alea.Next(200, 500)));
+                }
+                if (eggIsRemoved)
+                {
+                    if (randomC == 1)
+                    {
+                        coeurs.Add(new Coeur(GlobalHelpers.alea.Next(20, 1180), GlobalHelpers.alea.Next(200, 535)));
+                        eggIsRemoved = false;
+                    }
                 }
             }
             List<Projectile> projectilesToRemove = new List<Projectile>();
@@ -195,6 +213,7 @@ namespace ChickInvaders
                     if (chick.vie == 0)
                     {
                         Environment.Exit(0);
+                        Console.WriteLine("Perdu !");
                         return;
                     }
                 }
@@ -249,6 +268,36 @@ namespace ChickInvaders
             foreach (Coeur coeur in coeurs)
             {
                 coeur.UpdateC(interval);
+                foreach (Chick chick in coop)
+                {
+                    if (chick.chickHitbox.IntersectsWith(coeur.coeurHitbox))
+                    {
+                        eggIsRemoved = true;
+                        chick.vie++;
+                        Console.WriteLine(chick.vie);
+                        coeurs.Remove(coeur);
+                        break;
+                    }
+                }
+                break;
+            }
+            foreach (Beetle beetle in beets)
+            {
+                beetle.UpdateB(interval);
+                foreach (Chick chick in coop)
+                {
+                    if (chick.chickHitbox.IntersectsWith(beetle.beetleHitbox))
+                    {
+                        Console.WriteLine("Perdu !");
+                        Environment.Exit(0);
+                        return;
+                    }
+                }
+                if (beetle.X >= 1200)
+                {
+                    beets.Remove(beetle);
+                    break;
+                }
             }
         }
 
