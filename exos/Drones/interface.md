@@ -67,7 +67,7 @@ public void Test_that_drone_is_taking_orders()
     Assert.AreEqual(EvacuationState.Free, drone.GetEvacuationState());
 
     // Arrange a no-fly zone away from the drone
-    bool response = drone.Evacuate(new System.Drawing.Rectangle(700,700,200,200));
+    response = drone.Evacuate(new System.Drawing.Rectangle(700,700,200,200));
 
     // Assert
     Assert.IsTrue(response); // because the zone is away from the drone
