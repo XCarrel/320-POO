@@ -17,9 +17,29 @@ Créer deux objets de types distincts :
 
 ## Étape 2 : Coder trois classes enfants qui héritent de Container: 
 
-    - 1 classe `SensitiveContainer`
-    - 1 classe `RefrigeratedContainer`
-    - 1 classe `TankContainer` (container citerne donc besoin d’être réfrigéré)
-        - Cette classe aura uniquement 1 type de marchandise
+Coder les classes nécessaires pour que le code
+```csharp
+using ExoBoat;
 
-Déclarer tous vos containers à l’aide du polymorphisme (déclarer uniquement des objets de type `Container` qui vont adopter le comportement du type affilié) !
+Boat boat = new Boat(22, "Lamoco Cadix", "Tanker");
+
+boat.Containers.Add(new RefrigeratedContainer("x21", 12));
+boat.Containers.Add(new RefrigeratedContainer("w451", 12));
+boat.Containers.Add(new RefrigeratedContainer("Op44", 12));
+boat.Containers.Add(new SensitiveContainer("21re", "Acid"));
+boat.Containers.Add(new SensitiveContainer("ggh1", "Petrol"));
+
+Console.WriteLine(boat);
+boat.PrintLoad();
+
+Console.ReadKey();
+```
+Produise le résultat suivant:
+```
+Le bateau 22 s'appelle Lamoco Cadix, c'est un Tanker
+Container x21, température: 12
+Container w451, température: 12
+Container Op44, température: 12
+Container 21re, contient: Acid
+Container ggh1, contient: Petrol
+```
