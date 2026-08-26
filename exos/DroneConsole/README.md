@@ -50,13 +50,25 @@ Réalisez l'un ou l'autre des défis suivants:
 1. Il se déplace de plus en plus lentement au fur et à mesure que ses forces diminuent (attention: il ne peut toujours se déplacer que d'une case à la fois)
 1. Il saute quand on frappe la barre d'espace
 1. On le voit de dessus et il se déplace sur deux axes au lieu d'un. Il pourrait ressembler à ça:  
-   `-@<` &nbsp; &nbsp; &nbsp; vers la droite  
-   `>@-` &nbsp; &nbsp; &nbsp; vers la gauche
-   `v`  
-   `@` &nbsp; &nbsp; &nbsp; vers le haut  
-   `|`
-   `|`  
-   `@` &nbsp; &nbsp; &nbsp; vers le bas  
-   `^`
+   `x`  
+   `O >` &nbsp; &nbsp; &nbsp; vers la droite  
+   `x`  
+   &nbsp;
+
+   
+   `  x`  
+   `< O` &nbsp; &nbsp; &nbsp; vers la gauche  
+   `  x`  
+   &nbsp;
+
+   
+   `  ^`  
+   `x O x` &nbsp; &nbsp; &nbsp; vers le haut
+   &nbsp;
+
+   
+   `x O x` &nbsp; &nbsp; &nbsp; vers le bas  
+   `  v`  
+
 1. Il a une apparence plus élaborée (comme [ça](https://art.ngfiles.com/thumbnails/923000/923088_full.png?f1560570321) par exemple)
 1. ... ou toute autre idée qui vous vient
