@@ -31,7 +31,9 @@ Assurez-vous que vous avez bien compris les concepts de classe et d'objet.
 
 ## Etape 4
 
-Modifiez votre code pour réaliser une course à deux drones. Pour mettre du suspense dans la course, faites en sorte qu'un drone décide parfois de prendre une pause au lieu d'avancer.  
+Modifiez votre code pour réaliser une course à 5 drones au moyen d'un tableau de drones. (Attention: chacun doit avoir son altitude propre!)
+
+Pour mettre du suspense dans la course, faites en sorte qu'un drone décide parfois de prendre une pause au lieu d'avancer.  
 Sa décision sera aléatoire:
 
 ```
@@ -45,9 +47,9 @@ if (rand.Next(1,10) == 1) ...
 
 Réalisez l'un ou l'autre des défis suivants:
 
-1. Le drone fait demi-tour lorsqu'il atteint le bord de l'écran
-1. Il fait demi-tour à chaque fois qu'on tape une touche
-1. Il se déplace de plus en plus lentement au fur et à mesure que ses forces diminuent (attention: il ne peut toujours se déplacer que d'une case à la fois)
+1. Un drone fait demi-tour lorsqu'il atteint le bord de l'écran
+1. Un drone choisi au hasard fait demi-tour à chaque fois qu'on tape une touche
+1. Un drone se déplace de plus en plus lentement au fur et à mesure que ses forces diminuent (attention: il ne peut toujours se déplacer que d'une case à la fois)
 1. Il monte ou descend d'une ligne quand on frappe les flèches haut/bas
 1. Il a une apparence plus élaborée (comme [ça](https://art.ngfiles.com/thumbnails/923000/923088_full.png?f1560570321) par exemple)
 1. ... ou toute autre idée qui vous vient
