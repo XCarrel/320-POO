@@ -1,19 +1,12 @@
 # Drones
+
 ## Etape 2
 
-- Créez une nouvelle classe `Building` qui modélise un immeuble grâce aux attributs suivants:
-  - Emplacement (coordonnées x,y)
-  - Dimensions (Largeur, Profondeur (parce qu'on regarde depuis en haut! On ne peut pas représenter la hauteur du bâtiment))
-  - Une couleur
-- Déclarez une liste de `Building` dans le programme principal;  transmettez cette liste à `Airspace`
-- Modifiez `Airspace` pour qu'il dessine les buildings lors du Render. (Il n'y a rien à faire durant l'Update car les bâtiments ne bougent pas)  
-  
- **---- commit, nommé `feat(Drone): Afficher les bâtiments` ----**
+> Dans laquelle le drone apprend à gérer son vol et nous on pratique l'ajout de code dans une classe
 
-- Créez deux nouvelles classes pour modéliser les usines de production `Factory` et les points de vente `Store`. Tous les deux sont des bâtiments, les classes doivent donc hériter de `Building`. Ce qui les distingue:
-  - Les usines consomment beaucoup d'énergie, elles ont un attribut `PowerConsumption` que les magasins n'ont pas. Il s'agit du nombre de KwH par jour, un nombre décimal.
-  - Les points de vente ont des horaires d'ouverture `OpeningHours`. Il s'agit d'une liste de chaînes de caractères du genre: "Lundi: 8h-18h","Mardi: 8h-18h","Mercredi: 8h-18h"
-  - Les usines sont carrées, les magasins sont ronds
-- Lorsqu'un bâtiment est instancié (usine ou magasin), ses caractéristiques sont affichées dans la console (`Console.WriteLine()`)
-
- **---- commit, nommé `feat(Drone): Distinguer les usines des magasins` ----**
+- Le drone est caractérisé par un état qui est un parmi: [CRASH,LOW_BATTERY,LOADING, ROAMING]. Définir une `enum` nommée `State` dans la classe `Drone`, ajouter une propriété publique `State`. L'état initial du drone est `ROAMING`.
+- Quand il est en ROAMING, l'objectif est choisi de manière aléatoire et quand il l'atteint, un nouvel objectif et choisi aléatoirement.
+- L'espace aérien dispose d'une borne de recharge. Créer une classe `Charger`. Elle à deux attributs de position \_x et \_y. Elle a une méthode Render similaire à celle du drone, qui la dessine à l'écran sous la forme d'un rond de 20 pixels de diamètre.
+- Lorsque la batterie atteint un niveau de charge bas, le drone se met en état `LOW_BATTERY`. Quand il est dans cet état, son objectif est la borne de recharge.
+- Quand le drone atteint la borne, il passe en état `LOADING`. Il arrête de se déplacer et sa batterie se recharge au lieu de se décharger (la recharge est 10 fois plus rapide que la décharge)
+- Quand le la batterie du drone est pleine, il se remet en `ROAMING`

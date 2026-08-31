@@ -1,0 +1,53 @@
+# Le Drone
+
+Le but de cet exercice est de découvrir les concepts de classe et d'objet au travers de la réalisation puis de la transformation d'un programme simple.
+
+## Etape 1
+
+Voici [un programme](drone.zip) en mode console qui fait bouger un drone sur l'écran.
+
+Le drone `x-O-x` part à gauche de l'écran avec une batterie à 50%. Chaque déplacement vers la droite lui coûte un 2% de batterie. quand la batterie est vide, il est mort `____` et le programme s'arrête.
+
+Etablissons ensemble son pseudo-code.
+
+Réalisez-le ensuite avec vos connaissances actuelles et l'aide ces quelques liens:
+
+[Console.Clear](https://learn.microsoft.com/en-us/dotnet/api/system.console.clear?view=net-6.0)  
+[Console.CursorVisible](https://learn.microsoft.com/en-us/dotnet/api/system.console.cursorvisible?view=net-6.0)  
+[Console.SetCursorPosition](https://learn.microsoft.com/en-us/dotnet/api/system.console.setcursorposition?view=net-6.0)  
+[Console.ForegroundColor](https://learn.microsoft.com/en-us/dotnet/api/system.console.foregroundcolor?view=net-6.0)  
+[Console.MoveBufferArea](https://learn.microsoft.com/en-us/dotnet/api/system.console.movebufferarea?view=net-6.0)
+
+## Etape 2
+
+Discutons des différentes manières dont vous avez réalisé ce programme.
+
+## Etape 3
+
+Transformons votre code ensemble pour y introduire une **classe** `Drone` que l'on utilisera pour fabriquer (instancier) un **objet** `drone`
+
+Assurez-vous que vous avez bien compris les concepts de classe et d'objet.  
+**Rappel:** quand vous avez "bien compris" quelque chose, cela signifie que vous vous sentez capable de l'expliquer à quelqu'un.
+
+## Etape 4
+
+Modifiez votre code pour réaliser une course à deux drones. Pour mettre du suspense dans la course, faites en sorte qu'un drone décide parfois de prendre une pause au lieu d'avancer.  
+Sa décision sera aléatoire:
+
+```
+Random rand = new Random(); // à placer au bon endroit dans votre code !!!
+
+if (rand.Next(1,10) == 1) ...
+
+```
+
+## Ensuite, si vous avez encore du temps à disposition
+
+Réalisez l'un ou l'autre des défis suivants:
+
+1. Le drone fait demi-tour lorsqu'il atteint le bord de l'écran
+1. Il fait demi-tour à chaque fois qu'on tape une touche
+1. Il se déplace de plus en plus lentement au fur et à mesure que ses forces diminuent (attention: il ne peut toujours se déplacer que d'une case à la fois)
+1. Il monte ou descend d'une ligne quand on frappe les flèches haut/bas
+1. Il a une apparence plus élaborée (comme [ça](https://art.ngfiles.com/thumbnails/923000/923088_full.png?f1560570321) par exemple)
+1. ... ou toute autre idée qui vous vient
