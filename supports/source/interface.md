@@ -12,27 +12,30 @@ C'est exactement ce qu'est une interface.
 
 ## Une interface, c'est un contrat
 
-Une interface est une **liste de capacités** (méthodes, propriétés) qu'une classe **s'engage à fournir**. Elle dit **quoi** faire, jamais **comment** le faire.
+Une interface est une **liste de capacités** (méthodes, propriétés) qu'une classe **s'engage à fournir**. 
 
-Une comparaison de la vie réelle : la **prise électrique**. La prise murale définit une forme et une tension. Un grille-pain, un chargeur de téléphone ou une lampe respectent tous cette « interface ». La prise ne sait pas ce qu'elle alimente, et les appareils ne savent pas d'où vient le courant. Chacun peut être changé sans toucher à l'autre.
+Elle dit **quoi** faire, jamais **comment** le faire.
+
+Une comparaison de la vie quotidienne : la **prise électrique**. La prise murale définit une forme et une tension (240V en Europe, 110V aux USA). Un grille-pain, un chargeur de téléphone ou une lampe respectent tous cette « interface ». La prise ne sait pas ce qu'elle alimente, et les appareils ne savent pas d'où vient le courant. Chacun peut être changé sans toucher à l'autre.
 
 En programmation orientée objet, c'est pareil :
 
 - l'interface définit le contrat ;
-- les classes qui **implémentent** l'interface remplissent le contrat ;
-- le code qui **utilise** l'interface ne connaît que le contrat, pas la classe réelle.
+- les classes qui **implémentent** l'interface remplissent le contrat sans savoir qui va l'utiliser ni pourquoi ;
+- le code qui **utilise** l'interface ne connaît que le contrat, sans savoir comment elle fait.
 
 ## Les interfaces en C#
 
 ### Déclarer une interface
 
 ```csharp
+// Un véhicule qu'on peut conduire ...
 public interface IDrivable
 {
-    int Speed { get; }      // propriété en lecture
-    void Start();
-    void Accelerate(int amount);
-    void Brake();
+    int Speed { get; }              // ... a une vitesse
+    void Start();                   // ... peut démarrer
+    void Accelerate(int amount);    // ... peut accélérer
+    void Brake();                   // ... peut freiner
 }
 ```
 
